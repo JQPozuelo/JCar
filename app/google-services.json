@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "308412283594",
+    "project_id": "tfga5-9ed78",
+    "storage_bucket": "tfga5-9ed78.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308412283594:android:435f1ae111b46e890e9233",
+        "android_client_info": {
+          "package_name": "com.example.a5automocion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308412283594-kbb62nsjk8v6kkl982glmo336v8n5sc0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFPZiqYS0PRZJsHu2UklemLvivpyga92g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308412283594-kbb62nsjk8v6kkl982glmo336v8n5sc0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
