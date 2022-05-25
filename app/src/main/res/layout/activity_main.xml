@@ -4,15 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/edt_correo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:hint="@string/escriba_su_correo"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Titulo"
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck"
+        android:autofillHints="no" />
+
+    <EditText
+        android:id="@+id/edt_contra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/escriba_la_contrase_a"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edt_correo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edt_correo"
+        app:layout_constraintTop_toBottomOf="@+id/edt_correo"
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck"
+        android:autofillHints="no" />
+
+    <TextView
+        android:id="@+id/txt_Titulo"
+        android:layout_width="244dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/bienvenido_a_j5_automoci_n"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/bt_entrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/entrar"
+        app:layout_constraintEnd_toStartOf="@+id/bt_registrar"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="Entrar"
+        app:layout_constraintTop_toBottomOf="@+id/edt_contra"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/bt_registrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="56dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/registrarse"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="Registro"
+        app:layout_constraintTop_toBottomOf="@+id/edt_contra"
+        tools:ignore="TextContrastCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
