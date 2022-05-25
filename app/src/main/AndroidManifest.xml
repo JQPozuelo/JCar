@@ -10,9 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.A5Automocion">
         <activity
+            android:name=".CrearCoche"
+            android:exported="false" />
+        <activity
             android:name=".Menu1"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
