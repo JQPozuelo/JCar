@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Menu1 extends AppCompatActivity {
 
     String title = "Menu";
@@ -27,6 +29,19 @@ public class Menu1 extends AppCompatActivity {
     public void CrearCoche(View view) {
         String email = String.valueOf(txtAuten.getText());
         Intent intent = new Intent(this, CrearCoche.class);
+        intent.putExtra("correo", email);
+        startActivity(intent);
+    }
+
+    public void CerrarSesion(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        FirebaseAuth.getInstance().signOut();
+    }
+
+    public void MostrarV(View view) {
+        String email = String.valueOf(txtAuten.getText());
+        Intent intent = new Intent(this, MostrarCoche.class);
         intent.putExtra("correo", email);
         startActivity(intent);
     }

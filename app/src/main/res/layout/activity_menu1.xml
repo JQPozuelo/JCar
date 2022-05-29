@@ -11,22 +11,25 @@
         android:id="@+id/bt_CrearC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="408dp"
+        android:layout_marginTop="260dp"
         android:backgroundTint="@color/black"
-        android:text="Crear"
         android:onClick="CrearCoche"
+        android:text="Crear"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/bt_Mostrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/black"
+        android:text="Tus Vehiculos"
+        android:onClick="MostrarV"
         app:layout_constraintEnd_toEndOf="@+id/bt_CrearC"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="@+id/bt_CrearC"
         app:layout_constraintTop_toBottomOf="@+id/bt_CrearC" />
 
@@ -34,11 +37,12 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
         android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintEnd_toEndOf="@+id/bt_Mostrar"
+        app:layout_constraintHorizontal_bias="0.637"
+        app:layout_constraintStart_toStartOf="@+id/bt_Mostrar"
+        app:layout_constraintTop_toBottomOf="@+id/bt_Mostrar" />
 
     <TextView
         android:id="@+id/txtAuten"
@@ -57,6 +61,7 @@
         android:layout_marginBottom="24dp"
         android:backgroundTint="@color/black"
         android:text="Cerrar Sesion"
+        android:onClick="CerrarSesion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"

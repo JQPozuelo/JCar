@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public void Registro(View view) {
         String email = String.valueOf(edt_correo.getText());
         String password = String.valueOf(edt_contra.getText());
+        //mAuth.cre
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

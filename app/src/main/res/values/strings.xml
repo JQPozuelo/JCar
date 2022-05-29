@@ -6,4 +6,9 @@
     <string name="entrar">Entrar</string>
     <string name="registrarse">Registrarse</string>
     <string name="titulos">Titulos</string>
+    <string name="matricula">Matricula</string>
+    <string name="marca">Marca</string>
+    <string name="modelo">Modelo</string>
+    <string name="motor">Motor</string>
+    <string name="guardar_coche">Guardar Coche</string>
 </resources>
