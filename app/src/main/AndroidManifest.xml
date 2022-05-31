@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.A5Automocion">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RestablecerContra"
+            android:exported="false" />
+        <activity
             android:name=".MostrarCocheDatos"
             android:exported="false" />
         <activity
@@ -25,7 +31,7 @@
             android:name=".Menu1"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".InicioImagen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

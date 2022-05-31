@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             currentUser.reload();
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         /*FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
-
         myRef.setValue("Hola holita vecinito");*/
         this.setTitle(title);
 
@@ -63,25 +61,20 @@ public class MainActivity extends AppCompatActivity {
     public void Registro(View view) {
         String email = String.valueOf(edt_correo.getText());
         String password = String.valueOf(edt_contra.getText());
-        //mAuth.cre
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.i("firebasedb", "createUserWithEmail:success");
                             Toast.makeText(MainActivity.this, "Se ha creado el usuario correctamente.", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            // updateUI(user);
                             Intent intent = new Intent(MainActivity.this, Menu1.class);
                             intent.putExtra("correo", email);
                             startActivity(intent);
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.i("firebasedb", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "No se puedo crear el usuario.", Toast.LENGTH_SHORT).show();
-                            //  updateUI(null);
                         }
                     }
                 });
@@ -95,21 +88,23 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.i("firebasedb", "signInWithEmail:success");
                             Toast.makeText(MainActivity.this, "Acceso correcto.", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
                             Intent intent = new Intent(MainActivity.this, Menu1.class);
                             intent.putExtra("correo", email);
                             startActivity(intent);
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.i("firebasedb", "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Creendenciales incorrectas.", Toast.LENGTH_SHORT).show();
-                            // updateUI(null);
+
                         }
                     }
                 });
+    }
+
+    public void OlvidarContra(View view) {
+        Intent intent = new Intent(this, RestablecerContra.class);
+        startActivity(intent);
     }
 }
