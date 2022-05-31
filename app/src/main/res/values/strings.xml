@@ -11,4 +11,7 @@
     <string name="modelo">Modelo</string>
     <string name="motor">Motor</string>
     <string name="guardar_coche">Guardar Coche</string>
+    <string name="button">Button</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="eliminar">Eliminar</string>
 </resources>

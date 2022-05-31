@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.a5automocion.MostrarCocheDatos;
 import com.example.a5automocion.MostrarDetallesCoche;
 import com.example.a5automocion.R;
 
@@ -34,7 +35,7 @@ public class CocheViewHolder extends RecyclerView.ViewHolder implements View.OnC
         List<String> keys = this.lcAdapter.getKeys();
         Coches coches1 = coches.get(mPosition);
         String key = keys.get(mPosition);
-        Intent intent = new Intent(lcAdapter.getC(), MostrarDetallesCoche.class);
+        Intent intent = new Intent(lcAdapter.getC(), MostrarCocheDatos.class);
 
         intent.putExtra(EXTRA_OBJETO_MATRICULA, coches1);
         intent.putExtra(EXTRA_OBJETO_MARCA_KEY, key);

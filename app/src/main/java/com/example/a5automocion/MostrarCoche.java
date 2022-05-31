@@ -37,7 +37,7 @@ public class MostrarCoche extends AppCompatActivity {
     private List<Coches> coches;
     private ListaCochesAdapter mAdapter;
     private ArrayList<String> keys;
-    //----------------------------------
+    //-------------------------------------
     RecyclerView rv_Mostrar;
     String title = "Vehiculos";
     TextView txtLogin;
@@ -87,8 +87,7 @@ public class MostrarCoche extends AppCompatActivity {
         } else {
 
         }
-        //-------------------------------------------------
-
+        //-----------------------------------------------------------
     }
 
     @Override
@@ -115,7 +114,6 @@ public class MostrarCoche extends AppCompatActivity {
         void cocheIsDelete();
     }
     public MostrarCoche() {
-
         this.mDatabase  = FirebaseFirestore.getInstance();
         this.coches  = new ArrayList<Coches>();
     }

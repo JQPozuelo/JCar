@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.A5Automocion">
         <activity
+            android:name=".MostrarCocheDatos"
+            android:exported="false" />
+        <activity
             android:name=".MostrarDetallesCoche"
             android:exported="false" />
         <activity
