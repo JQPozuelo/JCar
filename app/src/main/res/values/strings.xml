@@ -14,4 +14,10 @@
     <string name="button">Button</string>
     <string name="actualizar">Actualizar</string>
     <string name="eliminar">Eliminar</string>
+    <string name="restablecer_contrase_a">Restablecer Contraseña</string>
+    <string name="imagenregistro">ImagenRegistro</string>
+    <string name="confirmar_contrase_a">Confirmar contraseña</string>
+    <string name="email">Email</string>
+    <string name="introduza_su_correo">Introduza su correo</string>
+    <string name="registrar">Registrar</string>
 </resources>

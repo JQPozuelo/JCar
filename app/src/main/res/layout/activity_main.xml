@@ -9,9 +9,10 @@
 
     <EditText
         android:id="@+id/edt_correo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="327dp"
+        android:layout_height="70dp"
         android:layout_marginTop="92dp"
+        android:autofillHints="no"
         android:ems="10"
         android:hint="@string/escriba_su_correo"
         android:inputType="textPersonName"
@@ -19,23 +20,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_Titulo"
-        tools:ignore="TouchTargetSizeCheck,TextContrastCheck"
-        android:autofillHints="no" />
-
-    <EditText
-        android:id="@+id/edt_contra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="@string/escriba_la_contrase_a"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/edt_correo"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edt_correo"
-        app:layout_constraintTop_toBottomOf="@+id/edt_correo"
-        tools:ignore="TouchTargetSizeCheck,TextContrastCheck"
-        android:autofillHints="no" />
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <TextView
         android:id="@+id/txt_Titulo"
@@ -56,39 +41,39 @@
         android:id="@+id/bt_entrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/black"
+        android:onClick="Entrar"
         android:text="@string/entrar"
         app:layout_constraintEnd_toStartOf="@+id/bt_registrar"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.313"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="Entrar"
-        app:layout_constraintTop_toBottomOf="@+id/edt_contra"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Restablecer"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/bt_registrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="56dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="28dp"
         android:backgroundTint="@color/black"
+        android:onClick="Registro"
         android:text="@string/registrarse"
         app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="Registro"
-        app:layout_constraintTop_toBottomOf="@+id/edt_contra"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Restablecer"
         tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/txt_Restablecer"
         android:layout_width="190dp"
         android:layout_height="26dp"
-        android:layout_marginTop="16dp"
-        android:inputType="textUri"
-        android:onClick="OlvidarContra"
-        android:text="Restablecer Contraseña"
+        android:layout_marginTop="40dp"
         android:clickable="true"
         android:focusable="true"
+        android:inputType="textUri"
+        android:onClick="OlvidarContra"
+        android:text="@string/restablecer_contrase_a"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColorLink="@android:color/holo_blue_dark"
@@ -97,6 +82,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_contra"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="327dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="36dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="@+id/edt_correo"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="@+id/edt_correo"
+        app:layout_constraintTop_toBottomOf="@+id/edt_correo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_contra"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@android:color/darker_gray"
+            android:hint="@string/escriba_la_contrase_a"
+            android:inputType="textPassword"
+            tools:ignore="TextContrastCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

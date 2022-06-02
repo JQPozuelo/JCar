@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.a5automocion.MostrarCocheDatos;
-import com.example.a5automocion.MostrarDetallesCoche;
 import com.example.a5automocion.R;
 
 import java.util.List;
