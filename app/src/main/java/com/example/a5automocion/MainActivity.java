@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public void Registro(View view) {
         Intent intent = new Intent(MainActivity.this, Registro.class);
         startActivity(intent);
-
+        System.out.println("Hola");
     }
 
     public void Entrar(View view) {
