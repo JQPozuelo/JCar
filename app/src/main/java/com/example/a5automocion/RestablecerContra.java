@@ -12,12 +12,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RestablecerContra extends AppCompatActivity {
 
-    EditText edt_ResCorreo;
+    TextInputEditText edt_ResCorreo;
     String correo = "";
     FirebaseAuth mAuth;
     ProgressDialog mDialog;
@@ -25,7 +26,7 @@ public class RestablecerContra extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restablecer_contra);
-        edt_ResCorreo = (EditText) findViewById(R.id.edt_ResCorreo);
+        edt_ResCorreo = (TextInputEditText) findViewById(R.id.edt_Rescorreo);
         mAuth = FirebaseAuth.getInstance();
         mDialog = new ProgressDialog(this);
     }
@@ -52,6 +53,6 @@ public class RestablecerContra extends AppCompatActivity {
         }else {
            Toast.makeText(this, "No puede dejar el correo  en blanco", Toast.LENGTH_SHORT).show();
         }
-
+        finish();
     }
 }

@@ -50,10 +50,15 @@ public class MostrarCoche extends AppCompatActivity {
         rv_Mostrar = findViewById(R.id.rv_Mostrar);
         mAuth = FirebaseAuth.getInstance();
         mAdapter = new ListaCochesAdapter(this);
-        Bundle extras = getIntent().getExtras();
-        String email = extras.getString("correo");
+        //Bundle extras = getIntent().getExtras();
+        //String email = extras.getString("correo");
         txtLogin = (TextView) findViewById(R.id.txtLogin);
-        txtLogin.setText(email);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null)
+        {
+            txtLogin.setText(user.getEmail());
+        }
+        //txtLogin.setText(email);
         this.setTitle(title);
         //-------------------------------------------------------
         CargarEquipos(new CocheStatus() {

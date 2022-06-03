@@ -1,78 +1,56 @@
 package com.example.a5automocion;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
+
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a5automocion.Clases.Coches;
 import com.example.a5automocion.Clases.Usuario;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.w3c.dom.Document;
-
-public class CrearCoche extends AppCompatActivity {
-
-    String title = "Crear";
-    TextView txtCorreoA;
+public class CrearCocheFragment extends DialogFragment {
+    private TextView txtCorreoA;
     private TextInputEditText edt_Matricula;
     private TextInputEditText edt_Marca;
     private TextInputEditText edt_Modelo;
     private TextInputEditText edt_Motor;
-    //private Spinner sp_estado;
-    //FirebaseFirestore myref;
     private FirebaseAuth mAuth;
-    //---------------------
-    //private String tipoEstado;
+
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        System.out.println(currentUser);
         if(currentUser != null){
             currentUser.reload();
         }
         else{
-            Toast.makeText(CrearCoche.this, "Tienes que estar logueado.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Tienes que estar logueado.", Toast.LENGTH_SHORT).show();
             FirebaseUser user = mAuth.getCurrentUser();
             //updateUI(user);
-            Intent intent = new Intent(CrearCoche.this, MainActivity.class);
+            Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
         }
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_coche);
-        edt_Marca = (TextInputEditText) findViewById(R.id.edt_Marca);
-        edt_Matricula = (TextInputEditText) findViewById(R.id.edt_Matricula);
-        edt_Modelo = (TextInputEditText) findViewById(R.id.edt_Modelo);
-        edt_Motor = (TextInputEditText) findViewById(R.id.edt_Motor);
-        //sp_estado = (Spinner) findViewById(R.id.sp_estado);
-        txtCorreoA = (TextView) findViewById(R.id.txtCorreoA);
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null)
-        {
-            txtCorreoA.setText(user.getEmail());
-        }
+
+
         /*if(sp_estado != null)
         {
             String estadoC [] = {"Disponible", "En reparacion"};
@@ -81,16 +59,33 @@ public class CrearCoche extends AppCompatActivity {
             sp_estado.setOnItemSelectedListener(this);
         }*/
         //-------------------------------------------------------
-        //Bundle extras = getIntent().getExtras();
-        //String email = extras.getString("correo");
-
-        //txtCorreoA.setText(email);
-        this.setTitle(title);
+        /*Bundle extras = getIntent().getExtras();
+        String email = extras.getString("correo");
+        txtCorreoA = (TextView) findViewById(R.id.txtCorreoA);
+        txtCorreoA.setText(email);*/
 
 
     }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_crear_coche, container, false);
+        edt_Marca = (TextInputEditText) v.findViewById(R.id.edt_Marca);
+        edt_Matricula = (TextInputEditText) v.findViewById(R.id.edt_Matricula);
+        edt_Modelo = (TextInputEditText) v.findViewById(R.id.edt_Modelo);
+        edt_Motor = (TextInputEditText) v.findViewById(R.id.edt_Motor);
+        txtCorreoA = (TextView) v.findViewById(R.id.txtCorreoA);
+        //sp_estado = (Spinner) findViewById(R.id.sp_estado);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null)
+        {
+            txtCorreoA.setText(user.getEmail());
+        }
+        return v;
+    }
 
-    public void GuardarCoche(View view) {
+    public void GuardarCoche1(View view) {
+
         String matrCoche = String.valueOf(edt_Matricula.getText());
         String marcCoche = String.valueOf(edt_Marca.getText());
         String modeCoche = String.valueOf(edt_Modelo.getText());
@@ -123,7 +118,7 @@ public class CrearCoche extends AppCompatActivity {
             return;
         }
 
-        AlertDialog.Builder alerta1 = new AlertDialog.Builder(this);
+        AlertDialog.Builder alerta1 = new AlertDialog.Builder(getActivity());
         alerta1.setTitle("¿Desea guardar el jugador?");
         alerta1.setPositiveButton("si", new DialogInterface.OnClickListener() {
             @Override
@@ -139,7 +134,7 @@ public class CrearCoche extends AppCompatActivity {
                         .document(c1.getMatricula()).set(c1);
                 /*myref.collection("Usuarios").document(u1.getMail()).get();
                 myref.collectionGroup("Coches").get();*/
-                Toast.makeText(CrearCoche.this, "actualizacion correcta", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "actualizacion correcta", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -150,16 +145,5 @@ public class CrearCoche extends AppCompatActivity {
             }
         });
         alerta1.show();
-        finish();
     }
-
-    /*@Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        tipoEstado = adapterView.getItemAtPosition(i).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }*/
 }

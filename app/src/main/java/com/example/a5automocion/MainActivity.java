@@ -10,18 +10,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.security.Provider;
-
 public class MainActivity extends AppCompatActivity {
 
-    EditText edt_correo;
-    EditText edt_contra;
+    TextInputEditText edt_correo;
+    TextInputEditText edt_contra;
     String title = "Login";
     private FirebaseAuth mAuth;
 
@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        edt_correo = (EditText)findViewById(R.id.edt_correo);
-        edt_contra = (EditText) findViewById(R.id.edt_contra);
+        edt_correo = (TextInputEditText)findViewById(R.id.edt_correo);
+        edt_contra = (TextInputEditText) findViewById(R.id.edt_contra);
         mAuth = FirebaseAuth.getInstance();
         this.setTitle(title);
 
@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     public void Registro(View view) {
         Intent intent = new Intent(MainActivity.this, Registro.class);
         startActivity(intent);
-        System.out.println("Hola");
     }
 
     public void Entrar(View view) {
@@ -67,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.i("firebasedb", "signInWithEmail:success");
                             Toast.makeText(MainActivity.this, "Acceso correcto.", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            //FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(MainActivity.this, Menu1.class);
-                            intent.putExtra("correo", email);
+                            //intent.putExtra("correo", email);
                             startActivity(intent);
                         } else {
                             Log.i("firebasedb", "signInWithEmail:failure", task.getException());

@@ -7,30 +7,38 @@
     android:background="@android:color/darker_gray"
     tools:context=".RestablecerContra">
 
-    <EditText
-        android:id="@+id/edt_ResCorreo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:autofillHints="no"
-        android:ems="10"
-        android:hint="Introduzca su email"
-        android:inputType="textPersonName"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtCorreoRegis"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="340dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="240dp"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+        app:startIconDrawable="@android:drawable/ic_dialog_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_Rescorreo"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@android:color/darker_gray"
+            android:hint="@string/introduza_su_correo"
+            tools:ignore="TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btRestablecer"
         android:layout_width="231dp"
         android:layout_height="71dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="88dp"
         android:backgroundTint="@color/black"
-        android:text="Restablecer Contraseña"
         android:onClick="RestablecerContra"
+        android:text="Restablecer Contraseña"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_ResCorreo" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCorreoRegis" />
 </androidx.constraintlayout.widget.ConstraintLayout>

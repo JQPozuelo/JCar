@@ -20,4 +20,7 @@
     <string name="email">Email</string>
     <string name="introduza_su_correo">Introduza su correo</string>
     <string name="registrar">Registrar</string>
+    <string name="cocheinc">CocheInc</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

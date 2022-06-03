@@ -2,29 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
-    tools:context=".CrearCoche">
-
-    <ImageView
-        android:id="@+id/ImagenCoche"
-        android:layout_width="197dp"
-        android:layout_height="106dp"
-        android:layout_marginTop="92dp"
-        android:contentDescription="@string/cocheinc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pruebacoche" />
+    tools:context=".CrearCocheFragment">
 
     <TextView
-        android:id="@+id/txtCorreoA"
-        android:layout_width="142dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:id="@+id/txtCorreoA2"
+        android:layout_width="349dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,16 +21,15 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="327dp"
         android:layout_height="70dp"
-        android:layout_marginTop="32dp"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ImagenCoche">
+        app:layout_constraintTop_toBottomOf="@+id/imagenCoche">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_Matricula"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="match_parent"
             android:background="@android:color/darker_gray"
             android:hint="@string/matricula"
             tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
@@ -52,8 +39,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtMarca"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="327dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="@+id/txtMatricula"
         app:layout_constraintStart_toStartOf="@+id/txtMatricula"
@@ -61,7 +48,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_Marca"
-            android:layout_width="match_parent"
+            android:layout_width="327dp"
             android:layout_height="70dp"
             android:background="@android:color/darker_gray"
             android:hint="@string/marca"
@@ -72,8 +59,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtModelo"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="327dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="@+id/txtMarca"
         app:layout_constraintStart_toStartOf="@+id/txtMarca"
@@ -81,7 +68,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_Modelo"
-            android:layout_width="match_parent"
+            android:layout_width="327dp"
             android:layout_height="70dp"
             android:background="@android:color/darker_gray"
             android:hint="@string/modelo"
@@ -91,8 +78,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtMotor"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="327dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="@+id/txtModelo"
         app:layout_constraintStart_toStartOf="@+id/txtModelo"
@@ -100,7 +87,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_Motor"
-            android:layout_width="match_parent"
+            android:layout_width="327dp"
             android:layout_height="70dp"
             android:background="@android:color/darker_gray"
             android:hint="@string/motor"
@@ -108,16 +95,27 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/bt_GuardarC"
+        android:id="@+id/bt_GuardarC2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/black"
-        android:onClick="GuardarCoche"
+        android:onClick="GuardarCoche1"
         android:text="@string/guardar_coche"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtMotor" />
 
+    <ImageView
+        android:id="@+id/imagenCoche"
+        android:layout_width="155dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="104dp"
+        android:contentDescription="@string/cocheinc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pruebacoche" />
 </androidx.constraintlayout.widget.ConstraintLayout>
