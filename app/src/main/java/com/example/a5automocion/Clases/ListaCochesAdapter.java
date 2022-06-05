@@ -1,10 +1,13 @@
 package com.example.a5automocion.Clases;
 
+import static android.graphics.Color.RED;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,10 +73,15 @@ public class ListaCochesAdapter extends RecyclerView.Adapter<CocheViewHolder>{
             Coches coche_actual = listaCoches.get(position);
             holder.txtMatriculaRv.setText(String.valueOf("Matricula: " + coche_actual.getMatricula()));
             holder.txtModeloRv.setText(String.valueOf("Marca: " + coche_actual.getMarca()));
-            holder.txtModeloRv.setBackgroundColor(Color.RED);
+            if (coche_actual.getEstado().equals("Disponible"))
+            {
+                holder.lnMostrar.setBackgroundColor(Color.GREEN);
+            }else {
+                holder.lnMostrar.setBackgroundColor(RED);
+            }
         }
         else{
-
+            Toast.makeText(c, "No se pudo cargar la lista de coches", Toast.LENGTH_SHORT).show();
         }
     }
 

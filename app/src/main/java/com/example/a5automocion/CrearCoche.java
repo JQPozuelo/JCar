@@ -38,6 +38,7 @@ public class CrearCoche extends AppCompatActivity {
     //private Spinner sp_estado;
     //FirebaseFirestore myref;
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
     //---------------------
     //private String tipoEstado;
     @Override
@@ -68,7 +69,7 @@ public class CrearCoche extends AppCompatActivity {
         //sp_estado = (Spinner) findViewById(R.id.sp_estado);
         txtCorreoA = (TextView) findViewById(R.id.txtCorreoA);
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
         {
             txtCorreoA.setText(user.getEmail());
@@ -123,9 +124,9 @@ public class CrearCoche extends AppCompatActivity {
             return;
         }
 
-        AlertDialog.Builder alerta1 = new AlertDialog.Builder(this);
-        alerta1.setTitle("¿Desea guardar el jugador?");
-        alerta1.setPositiveButton("si", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder alerta1 = new AlertDialog.Builder(CrearCoche.this);
+        alerta1.setTitle("¿Desea guardar el coche?");
+        alerta1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Coches c1 = new Coches(matrCoche, marcCoche, modeCoche, motCoche, estado);
@@ -139,18 +140,18 @@ public class CrearCoche extends AppCompatActivity {
                         .document(c1.getMatricula()).set(c1);
                 /*myref.collection("Usuarios").document(u1.getMail()).get();
                 myref.collectionGroup("Coches").get();*/
-                Toast.makeText(CrearCoche.this, "actualizacion correcta", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(CrearCoche.this, "Coche añadido correctamente", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
-        alerta1.setNegativeButton("no", new DialogInterface.OnClickListener() {
+        alerta1.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
             }
         });
         alerta1.show();
-        finish();
+
     }
 
     /*@Override

@@ -18,14 +18,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -37,6 +31,7 @@ public class MostrarCoche extends AppCompatActivity {
     private List<Coches> coches;
     private ListaCochesAdapter mAdapter;
     private ArrayList<String> keys;
+    private FirebaseUser user;
     //-------------------------------------
     RecyclerView rv_Mostrar;
     String title = "Vehiculos";
@@ -50,15 +45,13 @@ public class MostrarCoche extends AppCompatActivity {
         rv_Mostrar = findViewById(R.id.rv_Mostrar);
         mAuth = FirebaseAuth.getInstance();
         mAdapter = new ListaCochesAdapter(this);
-        //Bundle extras = getIntent().getExtras();
-        //String email = extras.getString("correo");
         txtLogin = (TextView) findViewById(R.id.txtLogin);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
         {
             txtLogin.setText(user.getEmail());
         }
-        //txtLogin.setText(email);
+        ;
         this.setTitle(title);
         //-------------------------------------------------------
         CargarEquipos(new CocheStatus() {
@@ -89,6 +82,7 @@ public class MostrarCoche extends AppCompatActivity {
         rv_Mostrar.setAdapter(mAdapter);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             rv_Mostrar.setLayoutManager(new LinearLayoutManager(this));
+
         } else {
 
         }
@@ -98,7 +92,6 @@ public class MostrarCoche extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             currentUser.reload();
@@ -110,6 +103,7 @@ public class MostrarCoche extends AppCompatActivity {
             Intent intent = new Intent(MostrarCoche.this, MainActivity.class);
             startActivity(intent);
         }
+
     }
     public interface CocheStatus
     {
@@ -141,6 +135,7 @@ public class MostrarCoche extends AppCompatActivity {
                     Coches v = document.toObject(Coches.class);
                     coches.add(v);
                 }
+                mAdapter.notifyDataSetChanged();
                 cocheStatus.cocheIsLoaded(coches,keys);
             }
 
