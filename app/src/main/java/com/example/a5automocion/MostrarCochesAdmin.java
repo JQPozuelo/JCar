@@ -2,8 +2,11 @@ package com.example.a5automocion;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +22,7 @@ import com.example.a5automocion.Clases.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,20 +37,19 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MostrarCochesAdmin extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class MostrarCochesAdmin extends AppCompatActivity {
 
-    private Spinner sp_email;
     private TextView txtEmailMA;
     private List<Coches> coches;
-    private List<Usuario> usuarios;
     private ArrayList<String> keys;
-    private String tipoEstado;
-    private ListaUsuariosAdapter uAdapter;
     //-----------------------------------------
     private Task<QuerySnapshot> myRef;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private FirebaseFirestore mDatabase;
+    private TextInputEditText edt_Usuario;
+    private ListaCochesAdapter mAdapter;
+    private RecyclerView rv_Mostrar;
     @Override
     public void onStart() {
         super.onStart();
@@ -66,97 +69,80 @@ public class MostrarCochesAdmin extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_coches_admin);
-        sp_email = (Spinner) findViewById(R.id.sp_email);
         txtEmailMA = (TextView) findViewById(R.id.txtEmailMA);
+        edt_Usuario = (TextInputEditText) findViewById(R.id.edt_correoUsuario);
+        rv_Mostrar = findViewById(R.id.rv_MostrarAdmin);
+        mAdapter = new ListaCochesAdapter(this);
         mAuth = FirebaseAuth.getInstance();
-        uAdapter = new ListaUsuariosAdapter(this);
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
         {
             txtEmailMA.setText(user.getEmail());
         }
-        if (sp_email != null)
-        {
-            cargarUsuarios(new UsuarioStatus() {
-                @Override
-                public void usuarioIsLoaded(List<Usuario> usuarios, List<String> keys) {
-                    uAdapter.setListaUsuarios(usuarios);
-                    uAdapter.setKeys(keys);
-                }
+        rv_Mostrar.setAdapter(mAdapter);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            rv_Mostrar.setLayoutManager(new LinearLayoutManager(this));
 
-                @Override
-                public void usuarioIsAdd() {
-
-                }
-
-                @Override
-                public void usuarioIsUpdate() {
-
-                }
-
-                @Override
-                public void usuarioIsDelete() {
-
-                }
-            });
-        }else{
-            System.out.println("No funciona");
         }
 
-
-    }
-    public interface UsuarioStatus
-    {
-        void usuarioIsLoaded(List<Usuario> usuarios, List<String> keys);
-        void usuarioIsAdd();
-        void usuarioIsUpdate();
-        void usuarioIsDelete();
     }
     public MostrarCochesAdmin() {
         this.mDatabase  = FirebaseFirestore.getInstance();
         this.coches  = new ArrayList<Coches>();
-        this.usuarios = new ArrayList<Usuario>();
     }
-    public void cargarUsuarios(final UsuarioStatus usuarioStatus)
-    {
 
-        this.myRef = mDatabase.collection("Usuarios").get();
-                /*.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List<String> keys = new ArrayList<String>();
-                            for (DocumentSnapshot document : task.getResult()) {
-                                keys.add(String.valueOf(document.getData()));
-                                Usuario ui1 = document.toObject(Usuario.class);
-                                usuarios.add(ui1);
-                            }
-                            usuarioStatus.usuarioIsLoaded(usuarios,keys);
-                        }
-                    }
-                });*/
+    public interface CocheStatus
+    {
+        void cocheIsLoaded(List<Coches> coches, List<String> keys);
+        void cocheIsAdd();
+        void cocheIsUpdate();
+        void cocheIsDelete();
+    }
+
+    public void BuscarCocheUsuario(View view) {
+        CargarEquipos(new CocheStatus() {
+            @Override
+            public void cocheIsLoaded(List<Coches> coches, List<String> keys) {
+                mAdapter.setListaEquipos(coches);
+                mAdapter.setKeys(keys);
+            }
+
+            @Override
+            public void cocheIsAdd() {
+
+            }
+
+            @Override
+            public void cocheIsUpdate() {
+
+            }
+
+            @Override
+            public void cocheIsDelete() {
+
+            }
+
+        });
+    }
+    public void CargarEquipos( final CocheStatus cocheStatus) {
+        String crre = String.valueOf(edt_Usuario.getText());
+        Usuario u1 = new Usuario(crre);
+        this.myRef = mDatabase.collection("Usuarios").document(u1.getMail()).collection("Coches").get();
         this.myRef.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                coches.clear();
+                //Task<QuerySnapshot> future = mDatabase.collection("cities").get();
+                //List<QueryDocumentSnapshot> documents = future.get().getDocuments();
                 List<String> keys = new ArrayList<String>();
-                for(DocumentSnapshot document : queryDocumentSnapshots.getDocuments())
-                {
+                for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
                     keys.add(String.valueOf(document.getData()));
-                    Usuario ui1 = document.toObject(Usuario.class);
-                    usuarios.add(ui1);
+                    Coches v = document.toObject(Coches.class);
+                    coches.add(v);
                 }
-                usuarioStatus.usuarioIsLoaded(usuarios,keys);
+                cocheStatus.cocheIsLoaded(coches, keys);
             }
+
         });
-
-    }
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        //tipoEstado = adapterView.getItemAtPosition(i).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }

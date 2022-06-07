@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.a5automocion.MostrarCocheDatos;
@@ -20,11 +21,13 @@ public class CocheViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public TextView txtModeloRv;
     public LinearLayout lnMostrar;
     ListaCochesAdapter lcAdapter;
+    public CardView cvH;
     public CocheViewHolder(@NonNull View itemView, ListaCochesAdapter lcAdapter) {
         super(itemView);
         lnMostrar = (LinearLayout) itemView.findViewById(R.id.lnMostrar);
         txtMatriculaRv = (TextView) itemView.findViewById(R.id.txtMatriculaRV);
         txtModeloRv = (TextView) itemView.findViewById(R.id.txtModeloRV);
+        cvH = (CardView) itemView.findViewById(R.id.cvH);
         this.lcAdapter = lcAdapter;
         itemView.setOnClickListener(this);
     }

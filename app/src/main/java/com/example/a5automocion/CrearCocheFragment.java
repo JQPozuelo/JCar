@@ -18,6 +18,7 @@ import com.example.a5automocion.Clases.Usuario;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class CrearCocheFragment extends DialogFragment {
@@ -132,6 +133,7 @@ public class CrearCocheFragment extends DialogFragment {
                 //myRef.child("Usuarios").child(u1.getMail().toString()).child(c1.getMatricula()).setValue(c1);
                 db.collection("Usuarios").document(u1.getMail()).collection("Coches")
                         .document(c1.getMatricula()).set(c1);
+
                 /*myref.collection("Usuarios").document(u1.getMail()).get();
                 myref.collectionGroup("Coches").get();*/
                 Toast.makeText(getActivity(), "actualizacion correcta", Toast.LENGTH_SHORT).show();

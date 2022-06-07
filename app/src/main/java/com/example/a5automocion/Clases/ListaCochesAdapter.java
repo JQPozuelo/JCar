@@ -75,9 +75,11 @@ public class ListaCochesAdapter extends RecyclerView.Adapter<CocheViewHolder>{
             holder.txtModeloRv.setText(String.valueOf("Marca: " + coche_actual.getMarca()));
             if (coche_actual.getEstado().equals("Disponible"))
             {
-                holder.lnMostrar.setBackgroundColor(Color.GREEN);
+                //holder.lnMostrar.setBackgroundColor(Color.GREEN);
+                holder.cvH.setCardBackgroundColor(Color.GREEN);
             }else {
-                holder.lnMostrar.setBackgroundColor(RED);
+                //holder.lnMostrar.setBackgroundColor(RED);
+                holder.cvH.setCardBackgroundColor(RED);
             }
         }
         else{
