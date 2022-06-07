@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:text="Button"
+        android:onClick="MostrarCAdmin"
         app:layout_constraintEnd_toEndOf="@+id/bt_Mostrar"
         app:layout_constraintHorizontal_bias="0.637"
         app:layout_constraintStart_toStartOf="@+id/bt_Mostrar"

@@ -92,7 +92,7 @@ public class MostrarCocheDatos extends AppCompatActivity {
                 /*myref.collection("Usuarios").document(u1.getMail()).get();
                 myref.collectionGroup("Coches").get();*/
                 Toast.makeText(MostrarCocheDatos.this, "Coche borrado correctamente", Toast.LENGTH_SHORT).show();
-                Intent intent1 = new Intent(MostrarCocheDatos.this, Menu1.class);
+                Intent intent1 = new Intent(MostrarCocheDatos.this, MostrarCoche.class);
                 startActivity(intent1);
                 //finish();
             }

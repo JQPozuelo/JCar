@@ -54,4 +54,9 @@ public class Menu1 extends AppCompatActivity {
         //intent.putExtra("correo", email);
         startActivity(intent);
     }
+
+    public void MostrarCAdmin(View view) {
+        Intent intent = new Intent(this, MostrarCochesAdmin.class);
+        startActivity(intent);
+    }
 }

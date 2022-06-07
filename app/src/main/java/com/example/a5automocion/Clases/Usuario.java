@@ -8,6 +8,10 @@ public class Usuario implements Serializable {
     public Usuario(String mail) {
         this.mail = mail;
     }
+    //Constructor vacio
+    public Usuario() {
+
+    }
 
     public String getMail() {
         return mail;
