@@ -126,8 +126,6 @@ public class MostrarCoche extends AppCompatActivity {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 coches.clear();
-                //Task<QuerySnapshot> future = mDatabase.collection("cities").get();
-                //List<QueryDocumentSnapshot> documents = future.get().getDocuments();
                 List<String> keys = new ArrayList<String>();
                 for(DocumentSnapshot document : queryDocumentSnapshots.getDocuments())
                 {

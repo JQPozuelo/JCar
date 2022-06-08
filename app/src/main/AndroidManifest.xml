@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.A5Automocion">
         <activity
+            android:name=".Mantemientos"
+            android:exported="false" />
+        <activity
             android:name=".MostrarCochesAdmin"
             android:exported="false" />
         <activity

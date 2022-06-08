@@ -27,4 +27,8 @@
     <string name="Motor">Motor</string>
     <string name="buscar_usuario">Buscar Usuario</string>
     <string name="correo_del_usuario">Correo del usuario</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
+    <string name="vehiculos">Vehiculos</string>
+    <string name="crear">Crear</string>
+    <string name="tus_vehiculos">Tus Vehiculos</string>
 </resources>

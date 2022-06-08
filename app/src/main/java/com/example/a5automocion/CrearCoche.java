@@ -22,8 +22,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class CrearCoche extends AppCompatActivity {
 
-    String title = "Crear";
-    TextView txtCorreoA;
+    private String title = "Crear";
+    private TextView txtCorreoA;
     private TextInputEditText edt_Matricula;
     private TextInputEditText edt_Marca;
     private TextInputEditText edt_Modelo;
@@ -40,7 +40,6 @@ public class CrearCoche extends AppCompatActivity {
         }
         else{
             Toast.makeText(CrearCoche.this, "Tienes que estar logueado.", Toast.LENGTH_SHORT).show();
-            FirebaseUser user = mAuth.getCurrentUser();
             Intent intent = new Intent(CrearCoche.this, MainActivity.class);
             startActivity(intent);
         }
