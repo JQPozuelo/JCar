@@ -11,11 +11,10 @@
         android:id="@+id/rv_Mostrar"
         android:layout_width="409dp"
         android:layout_height="607dp"
-        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="0.983" />
 
     <TextView
         android:id="@+id/txtLogin"

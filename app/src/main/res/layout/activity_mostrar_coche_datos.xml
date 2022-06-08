@@ -115,22 +115,22 @@
         android:id="@+id/bt_Eliminar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="@color/black"
-        android:text="@string/eliminar"
         android:onClick="ElimnarCoche"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/eliminar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_info"
         tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/txtCorreoMos"
-        android:layout_width="179dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="219dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -147,5 +147,27 @@
         app:layout_constraintStart_toStartOf="@+id/txtEstadoMos"
         app:layout_constraintTop_toBottomOf="@+id/txtEstadoMos"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btActualizarM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/actualizar"
+        android:onClick="ActualizarCoches"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_info" />
+
+    <TextView
+        android:id="@+id/txtRecibo"
+        android:layout_width="159dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toEndOf="@+id/txtCorreoMos"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,11 +21,11 @@ import java.util.regex.Pattern;
 
 public class Registro extends AppCompatActivity {
 
-    TextInputEditText edt_Rcorreo;
-    TextInputEditText edt_Ncontra;
-    TextInputEditText edt_CNcontra;
+    private TextInputEditText edt_Rcorreo;
+    private TextInputEditText edt_Ncontra;
+    private TextInputEditText edt_CNcontra;
     private FirebaseAuth mAuth;
-    String title = "Registro";
+    private String title = "Registro";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

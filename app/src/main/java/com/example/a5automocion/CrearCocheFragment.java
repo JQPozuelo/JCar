@@ -124,15 +124,15 @@ public class CrearCocheFragment extends DialogFragment {
         alerta1.setPositiveButton("si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Coches c1 = new Coches(matrCoche, marcCoche, modeCoche, motCoche, estado);
+                //Coches c1 = new Coches(matrCoche, marcCoche, modeCoche, motCoche, estado);
                 Usuario u1 = new Usuario(crre);
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 //FirebaseDatabase database = FirebaseDatabase.getInstance();
                 //DatabaseReference myRef = database.getReference();
                 //DocumentReference documentReference =
                 //myRef.child("Usuarios").child(u1.getMail().toString()).child(c1.getMatricula()).setValue(c1);
-                db.collection("Usuarios").document(u1.getMail()).collection("Coches")
-                        .document(c1.getMatricula()).set(c1);
+                /*db.collection("Usuarios").document(u1.getMail()).collection("Coches")
+                        .document(c1.getMatricula()).set(c1);*/
 
                 /*myref.collection("Usuarios").document(u1.getMail()).get();
                 myref.collectionGroup("Coches").get();*/

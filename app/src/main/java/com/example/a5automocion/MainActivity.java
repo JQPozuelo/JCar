@@ -20,9 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextInputEditText edt_correo;
-    TextInputEditText edt_contra;
-    String title = "Login";
+    private TextInputEditText edt_correo;
+    private TextInputEditText edt_contra;
+    private String title = "Login";
     private FirebaseAuth mAuth;
 
     @Override

@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Menu1 extends AppCompatActivity {
 
-    String title = "Menu";
+    private String title = "Menu";
     private TextView txtAuten;
     private Button btVehiculosAdmin;
     private Button btMostrar;
@@ -69,9 +69,7 @@ public class Menu1 extends AppCompatActivity {
     }
 
     public void MostrarV(View view) {
-        //String email = String.valueOf(txtAuten.getText());
         Intent intent = new Intent(this, MostrarCoche.class);
-        //intent.putExtra("correo", email);
         startActivity(intent);
     }
 

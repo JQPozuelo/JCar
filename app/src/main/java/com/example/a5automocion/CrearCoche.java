@@ -103,10 +103,9 @@ public class CrearCoche extends AppCompatActivity {
         alerta1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Coches c1 = new Coches(matrCoche, marcCoche, modeCoche, motCoche, estado);
-                Usuario u1 = new Usuario(crre);
+                Coches c1 = new Coches(matrCoche, marcCoche, modeCoche, motCoche, estado, crre);
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                db.collection("Usuarios").document(u1.getMail()).collection("Coches")
+                db.collection("Usuarios").document(user.getEmail()).collection("Coches")
                                     .document(c1.getMatricula()).set(c1);
                 Toast.makeText(CrearCoche.this, "Coche añadido correctamente", Toast.LENGTH_SHORT).show();
                 finish();

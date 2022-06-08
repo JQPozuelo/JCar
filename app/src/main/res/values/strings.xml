@@ -31,4 +31,7 @@
     <string name="vehiculos">Vehiculos</string>
     <string name="crear">Crear</string>
     <string name="tus_vehiculos">Tus Vehiculos</string>
+    <string name="guardar">Guardar</string>
+    <string name="buscar">Buscar</string>
+    <string name="borrar">Borrar</string>
 </resources>

@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class InicioImagen extends AppCompatActivity {
-
+    private String title = "Tus vehiculos";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +33,6 @@ public class InicioImagen extends AppCompatActivity {
                 finish();
             }
         }, 2000);
-
+        this.setTitle(title);
     }
 }

@@ -9,28 +9,29 @@
 
     <EditText
         android:id="@+id/edt_Manes"
-        android:layout_width="281dp"
-        android:layout_height="146dp"
-        android:layout_marginTop="324dp"
+        android:layout_width="384dp"
+        android:layout_height="184dp"
+        android:layout_marginTop="272dp"
+        android:autofillHints=""
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.284"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/black"
-        android:text="Guardar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/guardar"
+        android:onClick="GuardarManual"
+        app:layout_constraintEnd_toStartOf="@+id/btActualizar"
         app:layout_constraintTop_toBottomOf="@+id/edt_Manes" />
 
     <TextView
@@ -44,17 +45,60 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="317dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="120dp"
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="218dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="144dp"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_MatriculaBuscar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="@string/matricula"
+            tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btBuscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="156dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/buscar"
+        android:onClick="BuscarManual"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btActualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/actualizar"
+        android:onClick="ActualizarManual"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_Manes" />
+
+    <Button
+        android:id="@+id/btBorrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/borrar"
+        android:onClick="BorrarManual"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_Manes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

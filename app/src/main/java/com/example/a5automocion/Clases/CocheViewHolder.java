@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.a5automocion.MostrarCoche;
 import com.example.a5automocion.MostrarCocheDatos;
+import com.example.a5automocion.MostrarCochesAdmin;
 import com.example.a5automocion.R;
 
 import java.util.List;
@@ -21,6 +23,7 @@ public class CocheViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public TextView txtModeloRv;
     public LinearLayout lnMostrar;
     ListaCochesAdapter lcAdapter;
+    public MostrarCochesAdmin co;
     public CardView cvH;
     public CocheViewHolder(@NonNull View itemView, ListaCochesAdapter lcAdapter) {
         super(itemView);
@@ -41,7 +44,6 @@ public class CocheViewHolder extends RecyclerView.ViewHolder implements View.OnC
         Coches coches1 = coches.get(mPosition);
         String key = keys.get(mPosition);
         Intent intent = new Intent(lcAdapter.getC(), MostrarCocheDatos.class);
-
         intent.putExtra(EXTRA_OBJETO_MATRICULA, coches1);
         intent.putExtra(EXTRA_OBJETO_MARCA_KEY, key);
         lcAdapter.getC().startActivity(intent);

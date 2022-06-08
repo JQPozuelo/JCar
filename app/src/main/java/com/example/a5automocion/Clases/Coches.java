@@ -10,22 +10,28 @@ public class Coches implements Serializable {
     private String Motor;
     private String Estado;
     private String Comentarios;
+    private String Referencia;
     // Constructores
-    public Coches(String matricula, String marca, String modelo, String motor, String estado, String comentarios) {
+
+    public Coches(String matricula, String marca, String modelo, String motor, String estado, String comentarios, String referencia) {
         Matricula = matricula;
         Marca = marca;
         Modelo = modelo;
         Motor = motor;
         Estado = estado;
         Comentarios = comentarios;
+        Referencia = referencia;
     }
-    public Coches(String matricula, String marca, String modelo, String motor, String estado) {
+
+    public Coches(String matricula, String marca, String modelo, String motor, String estado, String referencia) {
         Matricula = matricula;
         Marca = marca;
         Modelo = modelo;
         Motor = motor;
         Estado = estado;
+        Referencia = referencia;
     }
+
     //Constructor vacio
     public Coches() {
 
@@ -79,6 +85,12 @@ public class Coches implements Serializable {
         Comentarios = comentarios;
     }
 
+    public String getReferencia() { return Referencia; }
+
+    public void setReferencia(String referencia) {
+        Referencia = referencia;
+    }
+
     // Hashcode y equals
     @Override
     public boolean equals(Object o) {
@@ -92,6 +104,7 @@ public class Coches implements Serializable {
         return Objects.hash(Matricula);
     }
     // To string
+
     @Override
     public String toString() {
         return "Coches{" +
@@ -101,6 +114,7 @@ public class Coches implements Serializable {
                 ", Motor='" + Motor + '\'' +
                 ", Estado='" + Estado + '\'' +
                 ", Comentarios='" + Comentarios + '\'' +
+                ", Referencia='" + Referencia + '\'' +
                 '}';
     }
 }
