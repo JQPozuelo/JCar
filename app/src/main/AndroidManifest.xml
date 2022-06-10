@@ -34,6 +34,9 @@
             android:name=".CrearCoche"
             android:exported="false" />
         <activity
+            android:name=".CrearCoche1"
+            android:exported="false" />
+        <activity
             android:name=".Menu1"
             android:exported="false" />
         <activity
