@@ -1,9 +1,11 @@
 package com.example.a5automocion.Clases;
 
+import static android.graphics.Color.GREEN;
 import static android.graphics.Color.RED;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,21 +74,100 @@ public class ListaCochesAdapter extends RecyclerView.Adapter<CocheViewHolder>{
         if(listaCoches!=null) {
             Coches coche_actual = listaCoches.get(position);
             holder.txtMatriculaRv.setText(String.valueOf("Matricula: " + coche_actual.getMatricula()));
-            holder.txtModeloRv.setText(String.valueOf("Marca: " + coche_actual.getMarca()));
+            holder.txtModeloRv.setText(String.valueOf("Modelo: " + coche_actual.getModelo()));
             if (coche_actual.getEstado().equals("Disponible"))
             {
-                //holder.lnMostrar.setBackgroundColor(Color.GREEN);
-                holder.cvH.setCardBackgroundColor(Color.GREEN);
+                holder.btMosD.setBackgroundColor(GREEN);
+            }else if (coche_actual.getEstado().equals("Recepcionado")){
+                holder.btMosD.setBackgroundColor(Color.parseColor("#ffff8800"));
             }else {
-                //holder.lnMostrar.setBackgroundColor(RED);
-                holder.cvH.setCardBackgroundColor(RED);
+                holder.btMosD.setBackgroundColor(RED);
+            }
+
+            if (coche_actual.getMarca().equals("Audi"))
+            {
+                holder.imgv.setImageResource(R.drawable.logoaudi);
+            }else if (coche_actual.getMarca().equals("Alfa Romeo"))
+            {
+                holder.imgv.setImageResource(R.drawable.logoalfaromeo);
+            }else if (coche_actual.getMarca().equals("BMW"))
+            {
+                holder.imgv.setImageResource(R.drawable.logobmw);
+            }else if (coche_actual.getMarca().equals("Citroen"))
+            {
+                holder.imgv.setImageResource(R.drawable.logocitroen);
+            }else if (coche_actual.getMarca().equals("Dacia"))
+            {
+                holder.imgv.setImageResource(R.drawable.logodacia);
+            }else if (coche_actual.getMarca().equals("Fiat"))
+            {
+                holder.imgv.setImageResource(R.drawable.logofiat);
+            }else if (coche_actual.getMarca().equals("Ford"))
+            {
+                holder.imgv.setImageResource(R.drawable.logoford);
+
+            }else if (coche_actual.getMarca().equals("Honda"))
+            {
+                holder.imgv.setImageResource(R.drawable.logohonda);
+
+            }else if (coche_actual.getMarca().equals("Hyundai"))
+            {
+                holder.imgv.setImageResource(R.drawable.logohyundai);
+
+            }else if (coche_actual.getMarca().equals("Kia"))
+            {
+                holder.imgv.setImageResource(R.drawable.logokia);
+
+            }else if (coche_actual.getMarca().equals("Mercedes"))
+            {
+                holder.imgv.setImageResource(R.drawable.logomercedes);
+
+            }else if (coche_actual.getMarca().equals("Mini"))
+            {
+                holder.imgv.setImageResource(R.drawable.logomini);
+
+            }else if (coche_actual.getMarca().equals("Mitsubishi"))
+            {
+                holder.imgv.setImageResource(R.drawable.logomitsubishi);
+
+            }else if (coche_actual.getMarca().equals("Nissan"))
+            {
+                holder.imgv.setImageResource(R.drawable.logonissan);
+
+            }else if (coche_actual.getMarca().equals("Opel"))
+            {
+                holder.imgv.setImageResource(R.drawable.logoopel);
+
+            }else if (coche_actual.getMarca().equals("Peugeot"))
+            {
+                holder.imgv.setImageResource(R.drawable.logopeugeot);
+
+            }else if (coche_actual.getMarca().equals("Renault"))
+            {
+                holder.imgv.setImageResource(R.drawable.logorenault);
+
+            }else if (coche_actual.getMarca().equals("Seat"))
+            {
+                holder.imgv.setImageResource(R.drawable.logoseat);
+
+            }else if (coche_actual.getMarca().equals("Skoda"))
+            {
+                holder.imgv.setImageResource(R.drawable.logoskoda);
+
+            }else if (coche_actual.getMarca().equals("Toyota"))
+            {
+                holder.imgv.setImageResource(R.drawable.logotoyota);
+
+            }else if (coche_actual.getMarca().equals("Volkswagen"))
+            {
+                holder.imgv.setImageResource(R.drawable.logovolkswagen);
+
             }
         }
         else{
             Toast.makeText(c, "No se pudo cargar la lista de coches", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     @Override
     public int getItemCount() {

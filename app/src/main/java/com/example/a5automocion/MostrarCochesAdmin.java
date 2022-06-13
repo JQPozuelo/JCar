@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -115,6 +117,7 @@ public class MostrarCochesAdmin extends AppCompatActivity {
             }
 
         });
+        ocultarTeclado();
     }
     public void CargarEquipos( final CocheStatus cocheStatus) {
         String crre = String.valueOf(edt_Usuario.getText());
@@ -136,5 +139,14 @@ public class MostrarCochesAdmin extends AppCompatActivity {
             }
 
         });
+    }
+    public void ocultarTeclado(){
+        View view = this.getCurrentFocus();
+        view.clearFocus();
+        if(view!= null)
+        {
+            InputMethodManager imd = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imd.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

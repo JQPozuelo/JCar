@@ -34,4 +34,7 @@
     <string name="guardar">Guardar</string>
     <string name="buscar">Buscar</string>
     <string name="borrar">Borrar</string>
+    <string name="restablecer_contrase_a1">Restablecer Contraseña</string>
+    <string name="restablece_tu_contrase_a">Restablece tu contraseña</string>
+    <string name="reseteocontra">ReseteoContra</string>
 </resources>

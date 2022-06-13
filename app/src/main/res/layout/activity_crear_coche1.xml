@@ -9,22 +9,27 @@
 
     <ImageView
         android:id="@+id/ImagenCoche"
-        android:layout_width="197dp"
-        android:layout_height="106dp"
-        android:layout_marginTop="92dp"
+        android:layout_width="277dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="68dp"
         android:contentDescription="@string/cocheinc"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pruebacoche" />
 
     <TextView
         android:id="@+id/txtCorreoA"
-        android:layout_width="142dp"
-        android:layout_height="52dp"
+        android:layout_width="224dp"
+        android:layout_height="54dp"
         android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.379"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +38,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="327dp"
         android:layout_height="70dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +50,9 @@
             android:layout_height="70dp"
             android:background="@android:color/darker_gray"
             android:hint="@string/matricula"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -52,8 +60,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtMotor"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="331dp"
-        android:layout_height="91dp"
+        android:layout_width="327dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,14 +74,17 @@
             android:layout_height="70dp"
             android:background="@android:color/darker_gray"
             android:hint="@string/motor"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/bt_GuardarC"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/black"
         android:onClick="GuardarCoche"
         android:text="@string/guardar_coche"
@@ -84,9 +95,9 @@
 
     <Spinner
         android:id="@+id/sp_marca"
-        android:layout_width="338dp"
+        android:layout_width="327dp"
         android:layout_height="70dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,9 +106,9 @@
 
     <Spinner
         android:id="@+id/sp_modelo"
-        android:layout_width="340dp"
+        android:layout_width="327dp"
         android:layout_height="66dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"

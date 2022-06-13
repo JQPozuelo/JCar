@@ -9,20 +9,20 @@
 
     <Button
         android:id="@+id/bt_CrearC"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="@color/black"
         android:onClick="CrearCoche"
-        android:text="@string/crear"
+        android:text="Crear Vehiculo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <Button
         android:id="@+id/bt_Mostrar"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/black"
@@ -32,25 +32,17 @@
         app:layout_constraintStart_toStartOf="@+id/bt_CrearC"
         app:layout_constraintTop_toBottomOf="@+id/bt_CrearC" />
 
-    <Button
-        android:id="@+id/btVehiculosAdmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:onClick="MostrarCAdmin"
-        android:text="@string/vehiculos"
-        app:layout_constraintEnd_toEndOf="@+id/bt_Mostrar"
-        app:layout_constraintHorizontal_bias="0.637"
-        app:layout_constraintStart_toStartOf="@+id/bt_Mostrar"
-        app:layout_constraintTop_toBottomOf="@+id/bt_Mostrar" />
-
     <TextView
         android:id="@+id/txtAuten"
-        android:layout_width="163dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="214dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.012"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,13 +61,24 @@
 
     <Button
         android:id="@+id/btMantenimientos"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Mantenimientos"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/black"
         android:onClick="Mantemientos"
+        android:text="Mantenimientos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btVehiculosAdmin" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_Mostrar" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="281dp"
+        android:layout_height="243dp"
+        android:layout_marginTop="88dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sinfondologo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

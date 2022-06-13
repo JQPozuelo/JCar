@@ -9,10 +9,10 @@
 
     <TextView
         android:id="@+id/txt_Titulo"
-        android:layout_width="244dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/bienvenido_a_j5_automoci_n"
+        android:layout_width="266dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:text="Bienvenido"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -24,7 +24,7 @@
 
     <Button
         android:id="@+id/bt_entrar"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:backgroundTint="@color/black"
@@ -38,24 +38,26 @@
 
     <Button
         android:id="@+id/bt_registrar"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="28dp"
         android:backgroundTint="@color/black"
         android:onClick="Registro"
         android:text="@string/registrarse"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_Restablecer"
         tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/txt_Restablecer"
-        android:layout_width="190dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="175dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="24dp"
         android:clickable="true"
         android:focusable="true"
+        android:gravity="center"
         android:inputType="textUri"
         android:onClick="OlvidarContra"
         android:text="@string/restablecer_contrase_a"
@@ -65,7 +67,7 @@
         android:textIsSelectable="false"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_Contras1"
         tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
@@ -75,11 +77,11 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="327dp"
         android:layout_height="70dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="28dp"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Titulo"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:startIconDrawable="@android:drawable/ic_dialog_email">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -113,5 +115,16 @@
             android:inputType="textPassword"
             tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="172dp"
+        android:layout_height="156dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Titulo"
+        app:srcCompat="@drawable/logueo1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

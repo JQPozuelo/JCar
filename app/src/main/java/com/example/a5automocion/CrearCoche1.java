@@ -84,7 +84,7 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 List<String> marcas = new ArrayList<>();
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(CrearCoche1.this, R.layout.estilospinner, marcas);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                //adapter.setDropDownViewResource(R.layout.estilospinner);
                 sp_marca.setAdapter(adapter);
                 db.collection("Coches").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -108,8 +108,6 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
 
     public void GuardarCoche(View view) {
         String matrCoche = String.valueOf(edt_Matricula.getText());
-        //String marcCoche = String.valueOf(edt_Marca.getText());
-        //String modeCoche = String.valueOf(edt_Modelo.getText());
         String motCoche = String.valueOf(edt_Motor.getText());
         String crre = String.valueOf(txtCorreoA.getText());
         String estado = "Disponible";
@@ -119,16 +117,6 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
             edt_Matricula.setError("Debes introducir una matricula");
             error = true;
         }
-        /*if(marcCoche.isEmpty())
-        {
-            edt_Marca.setError("Debes introducir una marca");
-            error = true;
-        }
-        if(modeCoche.isEmpty())
-        {
-            edt_Modelo.setError("Debes introducir un modelo");
-            error = true;
-        }*/
         if(motCoche.isEmpty())
         {
             edt_Motor.setError("Debes introducir un motor");
@@ -144,12 +132,30 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
         alerta1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Coches c1 = new Coches(matrCoche, marcaelegida, modeloelegido, motCoche, estado, crre);
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                db.collection("Usuarios").document(user.getEmail()).collection("Coches")
-                                    .document(c1.getMatricula()).set(c1);
-                Toast.makeText(CrearCoche1.this, "Coche añadido correctamente", Toast.LENGTH_SHORT).show();
-                finish();
+                FirebaseFirestore db1 = FirebaseFirestore.getInstance();
+                Coches c2 = new Coches(matrCoche, marcaelegida, modeloelegido, motCoche, estado, crre);
+                myRef = db1.collection("Usuarios").document(user.getEmail()).collection("Coches").document(c2.getMatricula()).get();
+                myRef.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful())
+                        {
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            if (documentSnapshot.exists())
+                            {
+                                Toast.makeText(CrearCoche1.this, "Este coche ya existe en nuestra base de datos", Toast.LENGTH_SHORT).show();
+                            }else {
+                                Coches c1 = new Coches(matrCoche, marcaelegida, modeloelegido, motCoche, estado, crre);
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                db.collection("Usuarios").document(user.getEmail()).collection("Coches")
+                                        .document(c1.getMatricula()).set(c1);
+                                Toast.makeText(CrearCoche1.this, "Coche añadido correctamente", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        }
+                    }
+                });
+
             }
         });
         alerta1.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -168,7 +174,7 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             List<String> modelos = new ArrayList<>();
             ArrayAdapter<String> adapter = new ArrayAdapter<>(CrearCoche1.this, R.layout.estilospinner, modelos);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            adapter.setDropDownViewResource(R.layout.estilospinner);
             sp_modelo.setAdapter(adapter);
             myRef = db.collection("Coches").document(marcaelegida).get();
             myRef.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -179,8 +185,19 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
                         if (documentSnapshot.exists()) {
                             String p = documentSnapshot.getString("Modelo");
                             String p1 = documentSnapshot.getString("Modelo1");
+                            String p2 = documentSnapshot.getString("Modelo2");
+                            String p3 = documentSnapshot.getString("Modelo3");
+                            String p4 = documentSnapshot.getString("Modelo4");
+                            String p5 = documentSnapshot.getString("Modelo5");
+                            // codigo para cargar el array dentro de un documento a falta de poder hacerlo seleccionable por partes
+                            /*ArrayList<String> slmodelo = (ArrayList<String>) documentSnapshot.getData().get("Md");
+                            modelos.add(String.valueOf(slmodelo));*/
                             modelos.add(p);
                             modelos.add(p1);
+                            modelos.add(p2);
+                            modelos.add(p3);
+                            modelos.add(p4);
+                            modelos.add(p5);
                         }
                         adapter.notifyDataSetChanged();
                     }

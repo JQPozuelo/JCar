@@ -136,7 +136,6 @@ public class MostrarCoche extends AppCompatActivity {
                 mAdapter.notifyDataSetChanged();
                 cocheStatus.cocheIsLoaded(coches,keys);
             }
-
         });
     }
 }

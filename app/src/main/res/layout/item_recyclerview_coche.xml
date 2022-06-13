@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cvH"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="100dp">
 
 
     <LinearLayout
@@ -11,17 +12,31 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
+        <ImageView
+            android:id="@+id/imgCoche"
+            android:layout_width="71dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/pruebacoche" />
+
+        <Button
+            android:id="@+id/btMosD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button"
+            tools:ignore="TouchTargetSizeCheck" />
+
         <LinearLayout
             android:id="@+id/lnMostrar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:padding="10dp">
 
             <TextView
                 android:id="@+id/txtMatriculaRV"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Matricula del coche"
                 android:textSize="24sp"
@@ -29,7 +44,7 @@
 
             <TextView
                 android:id="@+id/txtModeloRV"
-                android:layout_width="268dp"
+                android:layout_width="212dp"
                 android:layout_height="wrap_content"
                 android:text="Modelo"
                 android:textSize="16sp"

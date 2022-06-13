@@ -16,6 +16,9 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,18 +39,22 @@
 
     <TextView
         android:id="@+id/txtLog"
-        android:layout_width="157dp"
-        android:layout_height="69dp"
+        android:layout_width="246dp"
+        android:layout_height="62dp"
         android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="218dp"
+        android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_marginTop="144dp"
         app:endIconMode="clear_text"
@@ -61,19 +68,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/matricula"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btBuscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="144dp"
         android:backgroundTint="@color/black"
-        android:text="@string/buscar"
         android:onClick="BuscarManual"
+        android:text="@string/buscar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toEndOf="@+id/textInputLayout2"
         app:layout_constraintTop_toTopOf="parent" />
 

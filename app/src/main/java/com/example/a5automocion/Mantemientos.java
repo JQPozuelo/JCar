@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -92,6 +94,7 @@ public class Mantemientos extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+        ocultarTeclado();
     }
     public void GuardarManual(View view) {
         String matricula = String.valueOf(edt_Matricula.getText());
@@ -167,5 +170,14 @@ public class Mantemientos extends AppCompatActivity {
             }
         });
         alerta1.show();
+    }
+    public void ocultarTeclado(){
+        View view = this.getCurrentFocus();
+        view.clearFocus();
+        if(view!= null)
+        {
+            InputMethodManager imd = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imd.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

@@ -2,6 +2,8 @@ package com.example.a5automocion.Clases;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,15 +24,18 @@ public class CocheViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public TextView txtMatriculaRv;
     public TextView txtModeloRv;
     public LinearLayout lnMostrar;
-    ListaCochesAdapter lcAdapter;
-    public MostrarCochesAdmin co;
+    public Button btMosD;
+    public ListaCochesAdapter lcAdapter;
     public CardView cvH;
+    public ImageView imgv;
     public CocheViewHolder(@NonNull View itemView, ListaCochesAdapter lcAdapter) {
         super(itemView);
         lnMostrar = (LinearLayout) itemView.findViewById(R.id.lnMostrar);
         txtMatriculaRv = (TextView) itemView.findViewById(R.id.txtMatriculaRV);
         txtModeloRv = (TextView) itemView.findViewById(R.id.txtModeloRV);
         cvH = (CardView) itemView.findViewById(R.id.cvH);
+        btMosD = (Button) itemView.findViewById(R.id.btMosD);
+        imgv = (ImageView) itemView.findViewById(R.id.imgCoche);
         this.lcAdapter = lcAdapter;
         itemView.setOnClickListener(this);
     }

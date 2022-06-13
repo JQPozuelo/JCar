@@ -9,27 +9,26 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="212dp"
-        android:layout_height="173dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="257dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="104dp"
         android:contentDescription="@string/imagenregistro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sinfondologo" />
+        app:srcCompat="@drawable/registro" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtCorreoRegis"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="327dp"
         android:layout_height="70dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="32dp"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:startIconDrawable="@android:drawable/ic_dialog_email">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -92,13 +91,28 @@
         android:id="@+id/bt_RegistroEC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/black"
-        android:text="@string/registrar"
         android:onClick="RegistrarN"
+        android:text="@string/registrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtContraRegis1" />
+
+    <TextView
+        android:id="@+id/txtCreaCuenta"
+        android:layout_width="235dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:text="Crea tu cuenta"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

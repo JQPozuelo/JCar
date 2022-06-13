@@ -16,17 +16,15 @@ public class Menu1 extends AppCompatActivity {
 
     private String title = "Menu";
     private TextView txtAuten;
-    private Button btVehiculosAdmin;
-    private Button btMostrar;
+    private Button btCrearV;
+    private FirebaseUser user;
     @Override
     public void onStart() {
         super.onStart();
-        btVehiculosAdmin.setVisibility(View.INVISIBLE);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user.getEmail().equals("admin@gmail.com"))
         {
-            btVehiculosAdmin.setVisibility(View.VISIBLE);
-            btMostrar.setVisibility(View.INVISIBLE);
+            btCrearV.setVisibility(View.INVISIBLE);
         }
         if(user!= null){
             user.reload();
@@ -42,9 +40,8 @@ public class Menu1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu1);
         txtAuten = (TextView) findViewById(R.id.txtAuten);
-        btVehiculosAdmin = (Button) findViewById(R.id.btVehiculosAdmin);
-        btMostrar = (Button) findViewById(R.id.bt_Mostrar);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        btCrearV = (Button) findViewById(R.id.bt_CrearC);
+        user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
         {
             txtAuten.setText(user.getEmail());
@@ -69,13 +66,15 @@ public class Menu1 extends AppCompatActivity {
     }
 
     public void MostrarV(View view) {
-        Intent intent = new Intent(this, MostrarCoche.class);
-        startActivity(intent);
-    }
+        if (user.getEmail().equals("admin@gmail.com"))
+        {
+            Intent intent = new Intent(this, MostrarCochesAdmin.class);
+            startActivity(intent);
+        }else {
+            Intent intent = new Intent(this, MostrarCoche.class);
+            startActivity(intent);
+        }
 
-    public void MostrarCAdmin(View view) {
-        Intent intent = new Intent(this, MostrarCochesAdmin.class);
-        startActivity(intent);
     }
 
     public void Mantemientos(View view) {

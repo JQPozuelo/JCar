@@ -33,13 +33,11 @@ public class MainActivity extends AppCompatActivity {
             currentUser.reload();
         }
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         FirebaseAuth.getInstance().signOut();
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,14 +46,11 @@ public class MainActivity extends AppCompatActivity {
         edt_contra = (TextInputEditText) findViewById(R.id.edt_contra);
         mAuth = FirebaseAuth.getInstance();
         this.setTitle(title);
-
     }
-
     public void Registro(View view) {
         Intent intent = new Intent(MainActivity.this, Registro.class);
         startActivity(intent);
     }
-
     public void Entrar(View view) {
         String email = String.valueOf(edt_correo.getText());
         String password = String.valueOf(edt_contra.getText());
@@ -73,12 +68,10 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             Log.i("firebasedb", "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Creendenciales incorrectas.", Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });
     }
-
     public void OlvidarContra(View view) {
         Intent intent = new Intent(this, RestablecerContra.class);
         startActivity(intent);
