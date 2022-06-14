@@ -119,9 +119,7 @@ public class MostrarCoche extends AppCompatActivity {
     //-------------------------------------------------------
     public void CargarEquipos(final CocheStatus cocheStatus)
     {
-        String crre = String.valueOf(txtLogin.getText());
-        Usuario u1 = new Usuario(crre);
-        this.myRef = mDatabase.collection("Usuarios").document(u1.getMail()).collection("Coches").get();
+        this.myRef = mDatabase.collection("Usuarios").document(user.getEmail()).collection("Coches").get();
         this.myRef.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

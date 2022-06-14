@@ -104,13 +104,29 @@ public class Mantemientos extends AppCompatActivity {
         alerta1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        LibroMantenimiento lb = new LibroMantenimiento(matricula, apuntes);
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference();
-                        myRef.child("Vehiculos").child(lb.getReferencia()).setValue(lb);
-                        Toast.makeText(Mantemientos.this, "Manual añadido correctamente", Toast.LENGTH_SHORT).show();
-                        edt_Matricula.setText("");
-                        edt_Mantes.setText("");
+                        myRef.child("Vehiculos").child(matricula).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists())
+                                {
+                                    Toast.makeText(Mantemientos.this, "Ya existe esta entrada en nuestra base de datos", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    LibroMantenimiento lb = new LibroMantenimiento(matricula, apuntes);
+                                    FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+                                    DatabaseReference myRef1 = database.getReference();
+                                    myRef1.child("Vehiculos").child(lb.getReferencia()).setValue(lb);
+                                    Toast.makeText(Mantemientos.this, "Manual añadido correctamente", Toast.LENGTH_SHORT).show();
+                                    edt_Matricula.setText("");
+                                    edt_Mantes.setText("");
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
         });
         alerta1.setNegativeButton("No", new DialogInterface.OnClickListener() {

@@ -54,7 +54,6 @@ public class MostrarCochesAdmin extends AppCompatActivity {
         else{
             Toast.makeText(MostrarCochesAdmin.this, "Tienes que estar logueado.", Toast.LENGTH_SHORT).show();
             FirebaseUser user = mAuth.getCurrentUser();
-            //updateUI(user);
             Intent intent = new Intent(MostrarCochesAdmin.this, MainActivity.class);
             startActivity(intent);
         }
@@ -121,14 +120,11 @@ public class MostrarCochesAdmin extends AppCompatActivity {
     }
     public void CargarEquipos( final CocheStatus cocheStatus) {
         String crre = String.valueOf(edt_Usuario.getText());
-        Usuario u1 = new Usuario(crre);
-        this.myRef = mDatabase.collection("Usuarios").document(u1.getMail()).collection("Coches").get();
+        this.myRef = mDatabase.collection("Usuarios").document(crre).collection("Coches").get();
         this.myRef.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 coches.clear();
-                //Task<QuerySnapshot> future = mDatabase.collection("cities").get();
-                //List<QueryDocumentSnapshot> documents = future.get().getDocuments();
                 List<String> keys = new ArrayList<String>();
                 for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
                     keys.add(String.valueOf(document.getData()));
@@ -137,7 +133,6 @@ public class MostrarCochesAdmin extends AppCompatActivity {
                 }
                 cocheStatus.cocheIsLoaded(coches, keys);
             }
-
         });
     }
     public void ocultarTeclado(){

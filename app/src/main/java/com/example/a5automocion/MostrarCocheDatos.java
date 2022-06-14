@@ -52,10 +52,6 @@ public class MostrarCocheDatos extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user.getEmail().equals("admin@gmail.com"))
         {
-            edt_NombreMatricula.setEnabled(true);
-            edt_NombreModelo.setEnabled(true);
-            edt_NombreMarca.setEnabled(true);
-            edt_NombreMotor.setEnabled(true);
             edt_NombreEstado.setEnabled(true);
             txtRecibo.setVisibility(View.VISIBLE);
             btActu.setVisibility(View.VISIBLE);

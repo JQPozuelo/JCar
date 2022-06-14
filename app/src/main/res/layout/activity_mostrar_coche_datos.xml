@@ -25,6 +25,9 @@
             android:layout_height="65dp"
             android:background="@android:color/darker_gray"
             android:hint="@string/matricula"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -47,6 +50,9 @@
             android:layout_height="65dp"
             android:background="@android:color/darker_gray"
             android:hint="@string/marca"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -69,6 +75,9 @@
             android:layout_height="65dp"
             android:background="@android:color/darker_gray"
             android:hint="@string/modelo"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -78,6 +87,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="317dp"
         android:layout_height="65dp"
+        android:layout_marginTop="8dp"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="@+id/txtMotorMos"
         app:layout_constraintStart_toStartOf="@+id/txtMotorMos"
@@ -89,6 +99,9 @@
             android:layout_height="65dp"
             android:background="@android:color/darker_gray"
             android:hint="@string/estado"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,14 +121,17 @@
             android:layout_height="65dp"
             android:background="@android:color/darker_gray"
             android:hint="@string/Motor"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/bt_Eliminar"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
         android:backgroundTint="@color/black"
         android:onClick="ElimnarCoche"
@@ -126,9 +142,13 @@
 
     <TextView
         android:id="@+id/txtCorreoMos"
-        android:layout_width="219dp"
-        android:layout_height="38dp"
+        android:layout_width="190dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,13 +156,15 @@
 
     <EditText
         android:id="@+id/edt_info"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="317dp"
         android:layout_height="111dp"
+        android:layout_marginTop="8dp"
         android:autofillHints="no"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/txtEstadoMos"
         app:layout_constraintStart_toStartOf="@+id/txtEstadoMos"
         app:layout_constraintTop_toBottomOf="@+id/txtEstadoMos"
@@ -150,21 +172,25 @@
 
     <Button
         android:id="@+id/btActualizarM"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="8dp"
         android:backgroundTint="@color/black"
-        android:text="@string/actualizar"
         android:onClick="ActualizarCoches"
+        android:text="@string/actualizar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_info" />
 
     <TextView
         android:id="@+id/txtRecibo"
-        android:layout_width="159dp"
-        android:layout_height="37dp"
+        android:layout_width="190dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.277"
         app:layout_constraintStart_toEndOf="@+id/txtCorreoMos"

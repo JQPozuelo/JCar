@@ -84,7 +84,6 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 List<String> marcas = new ArrayList<>();
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(CrearCoche1.this, R.layout.estilospinner, marcas);
-                //adapter.setDropDownViewResource(R.layout.estilospinner);
                 sp_marca.setAdapter(adapter);
                 db.collection("Coches").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

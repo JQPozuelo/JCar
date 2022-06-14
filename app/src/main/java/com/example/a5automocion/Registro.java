@@ -86,6 +86,7 @@ public class Registro extends AppCompatActivity {
                 });
     }
     public void RegistrarN(View view) {
+
         validacion();
     }
 
