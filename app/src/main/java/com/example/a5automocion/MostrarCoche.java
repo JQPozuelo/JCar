@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class MostrarCoche extends AppCompatActivity {
     private ListaCochesAdapter mAdapter;
     private ArrayList<String> keys;
     private FirebaseUser user;
+    private ProgressDialog mDialog;
     //-------------------------------------
     RecyclerView rv_Mostrar;
     String title = "Vehiculos";
@@ -53,12 +55,17 @@ public class MostrarCoche extends AppCompatActivity {
         }
         ;
         this.setTitle(title);
+        mDialog = new ProgressDialog(this);
         //-------------------------------------------------------
+        mDialog.setMessage("Cargando Vehiculos");
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
         CargarEquipos(new CocheStatus() {
             @Override
             public void cocheIsLoaded(List<Coches> coches, List<String> keys) {
                 mAdapter.setListaEquipos(coches);
                 mAdapter.setKeys(keys);
+                mDialog.dismiss();
             }
 
             @Override

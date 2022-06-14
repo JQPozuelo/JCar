@@ -1,9 +1,11 @@
 package com.example.a5automocion;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,10 +15,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.a5automocion.Clases.CocheViewHolder;
 import com.example.a5automocion.Clases.Coches;
 import com.example.a5automocion.Clases.ListaCochesAdapter;
-import com.example.a5automocion.Clases.Usuario;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -36,8 +37,9 @@ public class MostrarCochesAdmin extends AppCompatActivity {
     private TextView txtEmailMA;
     private List<Coches> coches;
     private ArrayList<String> keys;
+    private ProgressDialog mDialog;
     //-----------------------------------------
-    private Task<QuerySnapshot> myRef;
+    private Task<DocumentSnapshot> myRef;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private FirebaseFirestore mDatabase;
@@ -77,6 +79,7 @@ public class MostrarCochesAdmin extends AppCompatActivity {
             rv_Mostrar.setLayoutManager(new LinearLayoutManager(this));
 
         }
+        mDialog = new ProgressDialog(this);
         this.setTitle(title);
     }
     public MostrarCochesAdmin() {
@@ -93,11 +96,15 @@ public class MostrarCochesAdmin extends AppCompatActivity {
     }
 
     public void BuscarCocheUsuario(View view) {
+        mDialog.setMessage("Cargando Vehiculos");
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
         CargarEquipos(new CocheStatus() {
             @Override
             public void cocheIsLoaded(List<Coches> coches, List<String> keys) {
                 mAdapter.setListaEquipos(coches);
                 mAdapter.setKeys(keys);
+                mDialog.dismiss();
             }
 
             @Override
@@ -120,20 +127,51 @@ public class MostrarCochesAdmin extends AppCompatActivity {
     }
     public void CargarEquipos( final CocheStatus cocheStatus) {
         String crre = String.valueOf(edt_Usuario.getText());
-        this.myRef = mDatabase.collection("Usuarios").document(crre).collection("Coches").get();
-        this.myRef.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        boolean error = false;
+        if (crre.isEmpty())
+        {
+            edt_Usuario.setError("No puedes dejar el correo en blanco");
+            error = true;
+        }
+        if (error)
+        {
+            return;
+        }
+        FirebaseFirestore db1 = FirebaseFirestore.getInstance();
+        myRef = db1.collection("Usuarios").document(crre).get();
+        myRef.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                coches.clear();
-                List<String> keys = new ArrayList<String>();
-                for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
-                    keys.add(String.valueOf(document.getData()));
-                    Coches v = document.toObject(Coches.class);
-                    coches.add(v);
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful())
+                {
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    if (documentSnapshot.exists())
+                    {
+                        mDatabase.collection("Usuarios").document(crre).collection("Coches").get()
+                                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                        coches.clear();
+                                        List<String> keys = new ArrayList<String>();
+                                        for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                                            keys.add(String.valueOf(document.getData()));
+                                            Coches v = document.toObject(Coches.class);
+                                            coches.add(v);
+                                        }
+                                        cocheStatus.cocheIsLoaded(coches, keys);
+                                    }
+                                });
+
+                    }else {
+                        Toast.makeText(MostrarCochesAdmin.this, "Ese usuario no existe.", Toast.LENGTH_SHORT).show();
+                        coches.clear();
+                        mAdapter.notifyDataSetChanged();
+                        mDialog.dismiss();
+                    }
                 }
-                cocheStatus.cocheIsLoaded(coches, keys);
             }
         });
+
     }
     public void ocultarTeclado(){
         View view = this.getCurrentFocus();

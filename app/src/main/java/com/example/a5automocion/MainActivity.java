@@ -54,6 +54,20 @@ public class MainActivity extends AppCompatActivity {
     public void Entrar(View view) {
         String email = String.valueOf(edt_correo.getText());
         String password = String.valueOf(edt_contra.getText());
+        boolean error = false;
+        if (email.isEmpty())
+        {
+            edt_correo.setError("Debes introducir un correo");
+            error = true;
+        }
+        if (password.isEmpty())
+        {
+            edt_contra.setError("Debes introducir la contraseña");
+        }
+        if (error)
+        {
+            return;
+        }
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -61,9 +75,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.i("firebasedb", "signInWithEmail:success");
                             Toast.makeText(MainActivity.this, "Acceso correcto.", Toast.LENGTH_SHORT).show();
-                            //FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(MainActivity.this, Menu1.class);
-                            //intent.putExtra("correo", email);
                             startActivity(intent);
                         } else {
                             Log.i("firebasedb", "signInWithEmail:failure", task.getException());

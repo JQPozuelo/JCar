@@ -45,7 +45,6 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
     private String marcaelegida;
     private String modeloelegido;
     private Task<DocumentSnapshot> myRef;
-    private Task<QuerySnapshot> myD;
     @Override
     public void onStart() {
         super.onStart();
@@ -154,7 +153,6 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
                         }
                     }
                 });
-
             }
         });
         alerta1.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -173,7 +171,6 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             List<String> modelos = new ArrayList<>();
             ArrayAdapter<String> adapter = new ArrayAdapter<>(CrearCoche1.this, R.layout.estilospinner, modelos);
-            adapter.setDropDownViewResource(R.layout.estilospinner);
             sp_modelo.setAdapter(adapter);
             myRef = db.collection("Coches").document(marcaelegida).get();
             myRef.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -221,4 +218,5 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
 }

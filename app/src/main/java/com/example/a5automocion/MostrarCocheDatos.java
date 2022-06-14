@@ -47,12 +47,14 @@ public class MostrarCocheDatos extends AppCompatActivity {
         edt_NombreMarca.setEnabled(false);
         edt_NombreMotor.setEnabled(false);
         edt_NombreEstado.setEnabled(false);
+        edt_info.setEnabled(false);
         txtRecibo.setVisibility(View.INVISIBLE);
         btActu.setVisibility(View.INVISIBLE);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user.getEmail().equals("admin@gmail.com"))
         {
             edt_NombreEstado.setEnabled(true);
+            edt_info.setEnabled(true);
             txtRecibo.setVisibility(View.VISIBLE);
             btActu.setVisibility(View.VISIBLE);
         }

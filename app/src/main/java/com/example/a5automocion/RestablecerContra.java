@@ -18,10 +18,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RestablecerContra extends AppCompatActivity {
 
-    TextInputEditText edt_ResCorreo;
-    String correo = "";
-    FirebaseAuth mAuth;
-    ProgressDialog mDialog;
+    private TextInputEditText edt_ResCorreo;
+    private String correo = "";
+    private FirebaseAuth mAuth;
+    private ProgressDialog mDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,15 +44,17 @@ public class RestablecerContra extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
                         Toast.makeText(RestablecerContra.this, "Se ha enviado el correo para restablecer tu contraseña", Toast.LENGTH_SHORT).show();
+                        mDialog.dismiss();
+                        finish();
                     }else {
-                        Toast.makeText(RestablecerContra.this, "No puede dejar el correo  en blanco", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RestablecerContra.this, "El correo no existe", Toast.LENGTH_SHORT).show();
+                        mDialog.dismiss();
                     }
-                    mDialog.dismiss();
                 }
             });
         }else {
            Toast.makeText(this, "No puede dejar el correo  en blanco", Toast.LENGTH_SHORT).show();
         }
-        finish();
+
     }
 }

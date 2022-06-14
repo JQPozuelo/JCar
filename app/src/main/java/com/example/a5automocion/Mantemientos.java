@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Mantemientos extends AppCompatActivity {
-    private String title = "Seguimiento";
+    private String title = "Libro de mantemiento";
     private EditText edt_Mantes;
     private FirebaseAuth mAuth;
     private TextView txtLog;
@@ -115,7 +115,7 @@ public class Mantemientos extends AppCompatActivity {
                                 }else {
                                     LibroMantenimiento lb = new LibroMantenimiento(matricula, apuntes);
                                     FirebaseDatabase database1 = FirebaseDatabase.getInstance();
-                                    DatabaseReference myRef1 = database.getReference();
+                                    DatabaseReference myRef1 = database1.getReference();
                                     myRef1.child("Vehiculos").child(lb.getReferencia()).setValue(lb);
                                     Toast.makeText(Mantemientos.this, "Manual añadido correctamente", Toast.LENGTH_SHORT).show();
                                     edt_Matricula.setText("");

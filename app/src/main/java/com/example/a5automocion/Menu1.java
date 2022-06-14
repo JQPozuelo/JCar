@@ -51,11 +51,7 @@ public class Menu1 extends AppCompatActivity {
 
 
     public void CrearCoche(View view) {
-        //String email = String.valueOf(txtAuten.getText());
         Intent intent = new Intent(this, CrearCoche1.class);
-        //CrearCocheFragment cf = new CrearCocheFragment();
-        //cf.show(getSupportFragmentManager(), "Navegar a fragment");
-        //intent.putExtra("correo", email);
         startActivity(intent);
     }
 

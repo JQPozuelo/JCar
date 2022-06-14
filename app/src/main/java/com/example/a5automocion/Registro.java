@@ -11,12 +11,17 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class Registro extends AppCompatActivity {
@@ -76,8 +81,15 @@ public class Registro extends AppCompatActivity {
                             Log.i("firebasedb", "createUserWithEmail:success");
                             Toast.makeText(Registro.this, "Se ha creado el usuario correctamente.", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(Registro.this, MainActivity.class);
-                            startActivity(intent);
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            Map<String, Object> coche = new HashMap<>();
+                            db.collection("Usuarios").document(user.getEmail()).set(coche).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Intent intent = new Intent(Registro.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
                         } else {
                             Log.i("firebasedb", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(Registro.this, "No se pudo crear el usuario.", Toast.LENGTH_SHORT).show();
