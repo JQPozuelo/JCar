@@ -40,16 +40,19 @@ public class Mantemientos extends AppCompatActivity {
     private TextInputEditText edt_Matricula;
     private Button btActualizar;
     private Button btBorrar;
+    private Button btNuevo;
     @Override
     public void onStart() {
         super.onStart();
         btActualizar.setVisibility(View.INVISIBLE);
         btBorrar.setVisibility(View.INVISIBLE);
+        btNuevo.setVisibility(View.INVISIBLE);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser.getEmail().equals("admin@gmail.com"))
         {
             btActualizar.setVisibility(View.VISIBLE);
             btBorrar.setVisibility(View.VISIBLE);
+            btNuevo.setVisibility(View.VISIBLE);
         }
         if(currentUser != null){
             currentUser.reload();
@@ -69,6 +72,7 @@ public class Mantemientos extends AppCompatActivity {
         edt_Matricula = (TextInputEditText) findViewById(R.id.edt_MatriculaBuscar);
         btActualizar = (Button) findViewById(R.id.btActualizar);
         btBorrar = (Button) findViewById(R.id.btBorrar);
+        btNuevo = (Button) findViewById(R.id.btGuardar);
         mAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
@@ -79,6 +83,16 @@ public class Mantemientos extends AppCompatActivity {
     }
     public void BuscarManual(View view) {
         String matricula = String.valueOf(edt_Matricula.getText());
+        boolean error = false;
+        if (matricula.isEmpty())
+        {
+            edt_Matricula.setError("No puedes dejar la matricula en blanco");
+            error = true;
+        }
+        if (error)
+        {
+            return;
+        }
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
         myRef.child("Vehiculos").child(matricula).addValueEventListener(new ValueEventListener() {
@@ -88,6 +102,9 @@ public class Mantemientos extends AppCompatActivity {
                 {
                     String notas = snapshot.child("contenido").getValue().toString();
                     edt_Mantes.setText(notas);
+                    Toast.makeText(Mantemientos.this, "Busqueda realizada correctamente", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(Mantemientos.this, "No existe esa matricula en nuestra base de datos", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -99,6 +116,20 @@ public class Mantemientos extends AppCompatActivity {
     public void GuardarManual(View view) {
         String matricula = String.valueOf(edt_Matricula.getText());
         String apuntes = String.valueOf(edt_Mantes.getText());
+        boolean error = false;
+        if (matricula.isEmpty())
+        {
+            edt_Matricula.setError("No puedes dejar la matricula en blanco");
+            error = true;
+        }
+        if (apuntes.isEmpty())
+        {
+            edt_Mantes.setError("No se puede dejar la información en blanco");
+        }
+        if (error)
+        {
+            return;
+        }
         AlertDialog.Builder alerta1 = new AlertDialog.Builder(Mantemientos.this);
         alerta1.setTitle("¿Desea guardar el manual?");
         alerta1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
@@ -124,7 +155,6 @@ public class Mantemientos extends AppCompatActivity {
                             }
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-
                             }
                         });
                     }
@@ -141,6 +171,20 @@ public class Mantemientos extends AppCompatActivity {
         String clave = String.valueOf(edt_Matricula.getText());
         String matricula = String.valueOf(edt_Matricula.getText());
         String datos = String.valueOf(edt_Mantes.getText());
+        boolean error = false;
+        if (matricula.isEmpty())
+        {
+            edt_Matricula.setError("No puedes dejar la matricula en blanco");
+            error = true;
+        }
+        if (datos.isEmpty())
+        {
+            edt_Mantes.setError("No se puede dejar la información en blanco");
+        }
+        if (error)
+        {
+            return;
+        }
         String prueba = "";
         AlertDialog.Builder alerta1 = new AlertDialog.Builder(Mantemientos.this);
         alerta1.setTitle("¿Desea actualizar el manual?");
@@ -167,6 +211,16 @@ public class Mantemientos extends AppCompatActivity {
     }
     public void BorrarManual(View view) {
         String clave = String.valueOf(edt_Matricula.getText());
+        boolean error = false;
+        if (clave.isEmpty())
+        {
+            edt_Matricula.setError("No puedes dejar la matricula en blanco");
+            error = true;
+        }
+        if (error)
+        {
+            return;
+        }
         AlertDialog.Builder alerta1 = new AlertDialog.Builder(Mantemientos.this);
         alerta1.setTitle("¿Desea borrar el manual?");
         alerta1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
@@ -174,10 +228,24 @@ public class Mantemientos extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference();
-                myRef.child("Vehiculos").child(clave).removeValue();
-                Toast.makeText(Mantemientos.this,"Borrado correcto ", Toast.LENGTH_LONG).show();
-                edt_Matricula.setText("");
-                edt_Mantes.setText("");
+                myRef.child("Vehiculos").child(clave).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists())
+                        {
+                            myRef.child("Vehiculos").child(clave).removeValue();
+                            Toast.makeText(Mantemientos.this,"Borrado correcto", Toast.LENGTH_LONG).show();
+                            edt_Matricula.setText("");
+                            edt_Mantes.setText("");
+                        }else {
+                            Toast.makeText(Mantemientos.this,"Esa matricula no se puede borrar no existe en nuestra base de datos", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
         alerta1.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -189,7 +257,7 @@ public class Mantemientos extends AppCompatActivity {
     }
     public void ocultarTeclado(){
         View view = this.getCurrentFocus();
-        view.clearFocus();
+        //view.clearFocus();
         if(view!= null)
         {
             InputMethodManager imd = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

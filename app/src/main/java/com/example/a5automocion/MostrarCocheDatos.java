@@ -38,6 +38,7 @@ public class MostrarCocheDatos extends AppCompatActivity {
     private FirebaseUser user;
     private TextView txtRecibo;
     private Button btActu;
+    private Button btE;
     private String title = "Vehiculos";
     @Override
     public void onStart() {
@@ -50,6 +51,7 @@ public class MostrarCocheDatos extends AppCompatActivity {
         edt_info.setEnabled(false);
         txtRecibo.setVisibility(View.INVISIBLE);
         btActu.setVisibility(View.INVISIBLE);
+        btE.setVisibility(View.VISIBLE);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user.getEmail().equals("admin@gmail.com"))
         {
@@ -57,6 +59,7 @@ public class MostrarCocheDatos extends AppCompatActivity {
             edt_info.setEnabled(true);
             txtRecibo.setVisibility(View.VISIBLE);
             btActu.setVisibility(View.VISIBLE);
+            btE.setVisibility(View.INVISIBLE);
         }
         if(user!= null){
             user.reload();
@@ -81,6 +84,7 @@ public class MostrarCocheDatos extends AppCompatActivity {
         txtCorreoMos = (TextView) findViewById(R.id.txtCorreoMos);
         txtRecibo = (TextView) findViewById(R.id.txtRecibo);
         btActu = (Button) findViewById(R.id.btActualizarM);
+        btE = (Button) findViewById(R.id.bt_Eliminar);
         mAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
@@ -138,21 +142,6 @@ public class MostrarCocheDatos extends AppCompatActivity {
         String crre = String.valueOf(txtRecibo.getText());
         String estado = String.valueOf(edt_NombreEstado.getText());
         boolean error = false;
-        if(matrCoche.isEmpty())
-        {
-            edt_NombreMatricula.setError("Debes introducir una matricula");
-            error = true;
-        }
-        if(marcCoche.isEmpty())
-        {
-            edt_NombreMarca.setError("Debes introducir una marca");
-            error = true;
-        }
-        if(modeCoche.isEmpty())
-        {
-            edt_NombreModelo.setError("Debes introducir un modelo");
-            error = true;
-        }
         if(motCoche.isEmpty())
         {
             edt_NombreMotor.setError("Debes introducir un motor");

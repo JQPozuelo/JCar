@@ -26,10 +26,10 @@
 
     <Button
         android:id="@+id/btGuardar"
-        android:layout_width="120dp"
-        android:layout_height="70dp"
+        android:layout_width="109dp"
+        android:layout_height="65dp"
         android:layout_marginTop="80dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/black"
         android:onClick="GuardarManual"
         android:text="@string/guardar"
@@ -76,7 +76,7 @@
     <Button
         android:id="@+id/btBuscar"
         android:layout_width="120dp"
-        android:layout_height="70dp"
+        android:layout_height="65dp"
         android:layout_marginTop="144dp"
         android:backgroundTint="@color/black"
         android:onClick="BuscarManual"
@@ -89,7 +89,7 @@
     <Button
         android:id="@+id/btActualizar"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_height="65dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/black"
@@ -100,8 +100,8 @@
 
     <Button
         android:id="@+id/btBorrar"
-        android:layout_width="120dp"
-        android:layout_height="70dp"
+        android:layout_width="100dp"
+        android:layout_height="65dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
         android:backgroundTint="@color/black"
