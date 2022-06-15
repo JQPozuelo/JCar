@@ -132,7 +132,7 @@
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/black"
         android:onClick="ElimnarCoche"
         android:text="@string/eliminar"
@@ -174,7 +174,7 @@
         android:id="@+id/btActualizarM"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/black"
         android:onClick="ActualizarCoches"
@@ -195,5 +195,17 @@
         app:layout_constraintHorizontal_bias="0.277"
         app:layout_constraintStart_toEndOf="@+id/txtCorreoMos"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BtMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:onClick="VolverMenu"
+        android:text="Menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

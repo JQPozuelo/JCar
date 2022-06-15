@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RestablecerContra extends AppCompatActivity {
@@ -22,6 +24,22 @@ public class RestablecerContra extends AppCompatActivity {
     private String correo = "";
     private FirebaseAuth mAuth;
     private ProgressDialog mDialog;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            currentUser.reload();
+        }
+        else{
+            Toast.makeText(RestablecerContra.this, "Tienes que estar logueado.", Toast.LENGTH_SHORT).show();
+            FirebaseUser user = mAuth.getCurrentUser();
+            Intent intent = new Intent(RestablecerContra.this, MainActivity.class);
+            startActivity(intent);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

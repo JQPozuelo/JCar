@@ -106,7 +106,6 @@ public class MostrarCoche extends AppCompatActivity {
         else{
             Toast.makeText(MostrarCoche.this, "Tienes que estar logueado.", Toast.LENGTH_SHORT).show();
             FirebaseUser user = mAuth.getCurrentUser();
-            //updateUI(user);
             Intent intent = new Intent(MostrarCoche.this, MainActivity.class);
             startActivity(intent);
         }

@@ -18,6 +18,7 @@ public class Menu1 extends AppCompatActivity {
     private TextView txtAuten;
     private Button btCrearV;
     private FirebaseUser user;
+    private Button btMostrar;
     @Override
     public void onStart() {
         super.onStart();
@@ -25,6 +26,7 @@ public class Menu1 extends AppCompatActivity {
         if (user.getEmail().equals("admin@gmail.com"))
         {
             btCrearV.setVisibility(View.INVISIBLE);
+            btMostrar.setText("Vehículos");
         }
         if(user!= null){
             user.reload();
@@ -41,6 +43,7 @@ public class Menu1 extends AppCompatActivity {
         setContentView(R.layout.activity_menu1);
         txtAuten = (TextView) findViewById(R.id.txtAuten);
         btCrearV = (Button) findViewById(R.id.bt_CrearC);
+        btMostrar = (Button) findViewById(R.id.bt_Mostrar);
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
         {

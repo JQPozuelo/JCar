@@ -181,4 +181,9 @@ public class MostrarCocheDatos extends AppCompatActivity {
         });
         alerta1.show();
     }
+
+    public void VolverMenu(View view) {
+        Intent intent = new Intent(this, Menu1.class);
+        startActivity(intent);
+    }
 }
