@@ -25,20 +25,6 @@ public class RestablecerContra extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressDialog mDialog;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            currentUser.reload();
-        }
-        else{
-            Toast.makeText(RestablecerContra.this, "Tienes que estar logueado.", Toast.LENGTH_SHORT).show();
-            FirebaseUser user = mAuth.getCurrentUser();
-            Intent intent = new Intent(RestablecerContra.this, MainActivity.class);
-            startActivity(intent);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

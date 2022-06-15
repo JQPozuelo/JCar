@@ -33,20 +33,6 @@ public class Registro extends AppCompatActivity {
     private String title = "Registro";
 
     @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            currentUser.reload();
-        }
-        else{
-            Toast.makeText(Registro.this, "Tienes que estar logueado.", Toast.LENGTH_SHORT).show();
-            FirebaseUser user = mAuth.getCurrentUser();
-            Intent intent = new Intent(Registro.this, MainActivity.class);
-            startActivity(intent);
-        }
-    }
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);

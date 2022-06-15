@@ -63,9 +63,7 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_coche1);
-        edt_Marca = (TextInputEditText) findViewById(R.id.edt_Marca);
         edt_Matricula = (TextInputEditText) findViewById(R.id.edt_Matricula);
-        edt_Modelo = (TextInputEditText) findViewById(R.id.edt_Modelo);
         edt_Motor = (TextInputEditText) findViewById(R.id.edt_Motor);
         txtCorreoA = (TextView) findViewById(R.id.txtCorreoA);
         sp_marca = (Spinner) findViewById(R.id.sp_marca);
