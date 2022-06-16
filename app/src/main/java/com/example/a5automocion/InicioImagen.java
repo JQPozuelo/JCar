@@ -14,18 +14,20 @@ import android.widget.Toolbar;
 
 public class InicioImagen extends AppCompatActivity {
     private String title = "JCar";
+    private ImageView logoImagen;
+    private Animation animacion1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_inicio_imagen);
+
         // Agregar Animaciones
-        Animation animacion1 = AnimationUtils.loadAnimation(this, R.anim.mover);
-
-        ImageView logoImagen = findViewById(R.id.logoJ);
-
+        animacion1 = AnimationUtils.loadAnimation(this, R.anim.mover);
+        logoImagen = findViewById(R.id.logoJ);
         logoImagen.setAnimation(animacion1);
 
+        // Lanzo el hilo Thread
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -33,6 +35,7 @@ public class InicioImagen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
+            // Le doy un delay de 2 segundos
         }, 2000);
         this.setTitle(title);
     }

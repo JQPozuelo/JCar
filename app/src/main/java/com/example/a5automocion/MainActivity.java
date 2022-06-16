@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         String email = String.valueOf(edt_correo.getText());
         String password = String.valueOf(edt_contra.getText());
         boolean error = false;
+        // Creo las validaciones
         if (email.isEmpty())
         {
             edt_correo.setError("Debes introducir un correo");
@@ -68,10 +69,12 @@ public class MainActivity extends AppCompatActivity {
         {
             return;
         }
+        // Con la autenticacion de Firebase lanzo el metodo de crear un usuario con email y contraseña
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        // si la tarea lanzada funciona realiza el registro
                         if (task.isSuccessful()) {
                             Log.i("firebasedb", "signInWithEmail:success");
                             Toast.makeText(MainActivity.this, "Acceso correcto.", Toast.LENGTH_SHORT).show();

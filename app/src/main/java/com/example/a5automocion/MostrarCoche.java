@@ -55,12 +55,15 @@ public class MostrarCoche extends AppCompatActivity {
         }
         ;
         this.setTitle(title);
+        //Lanzo una pantalla de dialogo
         mDialog = new ProgressDialog(this);
-        //-------------------------------------------------------
         mDialog.setMessage("Cargando Vehiculos");
+        // Aqui le indico que no pueda quitarla hasta que realice la accion
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
+        //-------------------------------------------------------
         CargarEquipos(new CocheStatus() {
+            // Le indico que si el coche es leido cargue la lista de coches
             @Override
             public void cocheIsLoaded(List<Coches> coches, List<String> keys) {
                 mAdapter.setListaEquipos(coches);
@@ -86,10 +89,11 @@ public class MostrarCoche extends AppCompatActivity {
         });
 
         //------------------------------------------------------------
+        // Le indico la posicion de la lista al recycler view
         rv_Mostrar.setAdapter(mAdapter);
+        // Le digo la orientacion para que muestre el contenido en el recycler view
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             rv_Mostrar.setLayoutManager(new LinearLayoutManager(this));
-
         } else {
 
         }
@@ -125,8 +129,11 @@ public class MostrarCoche extends AppCompatActivity {
     //-------------------------------------------------------
     public void CargarEquipos(final CocheStatus cocheStatus)
     {
+        // Le indico con las funciones de Firebase donde tiene que buscar para sacar los vehiculos del usuario referenciado en el documento
         this.myRef = mDatabase.collection("Usuarios").document(user.getEmail()).collection("Coches").get();
         this.myRef.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            // Si la llamada se realiza con exito le indico que recorra los documentos, que convierta el documento a objeto y este la añada a una lista de objetos
+            // de coches, notifica el cambio y le pasa la lista al metodo de cargar vehiculos
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 coches.clear();

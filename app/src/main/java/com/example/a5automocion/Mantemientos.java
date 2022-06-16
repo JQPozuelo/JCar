@@ -140,17 +140,17 @@ public class Mantemientos extends AppCompatActivity {
                         myRef.child("Vehiculos").child(matricula).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if (snapshot.exists())
+                                if (!snapshot.exists())
                                 {
-                                    Toast.makeText(Mantemientos.this, "Ya existe esta entrada en nuestra base de datos", Toast.LENGTH_SHORT).show();
-                                }else {
                                     LibroMantenimiento lb = new LibroMantenimiento(matricula, apuntes);
                                     FirebaseDatabase database1 = FirebaseDatabase.getInstance();
                                     DatabaseReference myRef1 = database1.getReference();
-                                    myRef1.child("Vehiculos").child(lb.getReferencia()).setValue(lb);
+                                    myRef1.child("Vehiculos").child(matricula).setValue(lb);
                                     Toast.makeText(Mantemientos.this, "Manual añadido correctamente", Toast.LENGTH_SHORT).show();
                                     edt_Matricula.setText("");
                                     edt_Mantes.setText("");
+                                }else {
+                                    Toast.makeText(Mantemientos.this, "Ya existe esta entrada en nuestra base de datos", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             @Override

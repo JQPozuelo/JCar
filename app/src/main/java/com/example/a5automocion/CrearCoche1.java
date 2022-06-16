@@ -3,6 +3,7 @@ package com.example.a5automocion;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
@@ -77,6 +79,7 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
         this.setTitle(title);
         if (sp_marca != null)
         {
+            // Le meto en un try catch para mejorar ante una posible falla de referencia sobre algun objeto nulo
             try {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 List<String> marcas = new ArrayList<>();
@@ -112,10 +115,18 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
         {
             edt_Matricula.setError("Debes introducir una matricula");
             error = true;
+        }else if(!Pattern.compile("[0-9]").matcher(matrCoche).find())
+        {
+            edt_Matricula.setError("La matricula debe contener letras, compruebe su matricula");
+            error = true;
         }
         if(motCoche.isEmpty())
         {
             edt_Motor.setError("Debes introducir un motor");
+            error = true;
+        }else if(!Pattern.compile("[0-9]").matcher(motCoche).find())
+        {
+            edt_Matricula.setError("El motor debe contener numeros");
             error = true;
         }
         if(error)
@@ -183,9 +194,6 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
                             String p3 = documentSnapshot.getString("Modelo3");
                             String p4 = documentSnapshot.getString("Modelo4");
                             String p5 = documentSnapshot.getString("Modelo5");
-                            // codigo para cargar el array dentro de un documento a falta de poder hacerlo seleccionable por partes
-                            /*ArrayList<String> slmodelo = (ArrayList<String>) documentSnapshot.getData().get("Md");
-                            modelos.add(String.valueOf(slmodelo));*/
                             modelos.add(p);
                             modelos.add(p1);
                             modelos.add(p2);

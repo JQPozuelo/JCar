@@ -46,13 +46,11 @@ public class Registro extends AppCompatActivity {
         String correo = String.valueOf(edt_Rcorreo.getText());
         String contraN = String.valueOf(edt_Ncontra.getText());
         String contraCN = String.valueOf(edt_CNcontra.getText());
-
+        boolean error = false;
         if(correo.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(correo).matches())
         {
             edt_Rcorreo.setError("Correo invalido");
-            return;
-        }else {
-            edt_Rcorreo.setError(null);
+            error = true;;
         }
 
         if (contraN.isEmpty() || contraN.length() < 6)
@@ -61,16 +59,17 @@ public class Registro extends AppCompatActivity {
         }else if(!Pattern.compile("[0-9]").matcher(contraN).find())
         {
             edt_Ncontra.setError("La contraseña debe contener al menos 1 numero");
-            return;
-        }else {
-            edt_Ncontra.setError(null);
+            error = true;
         }
-
         if (!contraCN.equals(contraN)){
             edt_CNcontra.setError("La contraseña no es la misma");
-            return;
+            error = true;
         }else {
             RegistroUsuario(correo, contraN);
+        }
+        if (error)
+        {
+            return;
         }
     }
     public void RegistroUsuario(String email, String password){
