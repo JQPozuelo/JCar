@@ -76,7 +76,6 @@ public class MostrarCochesAdmin extends AppCompatActivity {
         rv_Mostrar.setAdapter(mAdapter);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             rv_Mostrar.setLayoutManager(new LinearLayoutManager(this));
-
         }
         mDialog = new ProgressDialog(this);
         this.setTitle(title);
@@ -95,14 +94,17 @@ public class MostrarCochesAdmin extends AppCompatActivity {
     }
 
     public void BuscarCocheUsuario(View view) {
+        //En la accion de cargar los vehículos del usuario se mostrara un dialogo, que no podra ser quitado por el usuario hasta que no se termine la accion donde haya sido puesto
         mDialog.setMessage("Cargando Vehiculos");
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
         CargarEquipos(new CocheStatus() {
             @Override
             public void cocheIsLoaded(List<Coches> coches, List<String> keys) {
+                //Carga la lista de equipos y sus claves
                 mAdapter.setListaEquipos(coches);
                 mAdapter.setKeys(keys);
+                //Quita el dialogo cuando la accion se haya completado
                 mDialog.dismiss();
             }
 
@@ -137,6 +139,7 @@ public class MostrarCochesAdmin extends AppCompatActivity {
             return;
         }
         FirebaseFirestore db1 = FirebaseFirestore.getInstance();
+        //Primero se le pasa el usuario introducido en el campo de texto y comprobara que existe
         myRef = db1.collection("Usuarios").document(crre).get();
         myRef.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -146,12 +149,14 @@ public class MostrarCochesAdmin extends AppCompatActivity {
                     DocumentSnapshot documentSnapshot = task.getResult();
                     if (documentSnapshot.exists())
                     {
+                        //Si el usuario existe este llamara al documento y mostrara los vehiculos de este usuario
                         mDatabase.collection("Usuarios").document(crre).collection("Coches").get()
                                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                     @Override
                                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                         coches.clear();
                                         List<String> keys = new ArrayList<String>();
+                                        // Para saber cuantos documentos tiene este documento usuario, se recorreran con un foreach y se añadiran a la lista
                                         for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
                                             keys.add(String.valueOf(document.getData()));
                                             Coches v = document.toObject(Coches.class);
@@ -160,7 +165,6 @@ public class MostrarCochesAdmin extends AppCompatActivity {
                                         cocheStatus.cocheIsLoaded(coches, keys);
                                     }
                                 });
-
                     }else {
                         Toast.makeText(MostrarCochesAdmin.this, "Ese usuario no existe.", Toast.LENGTH_SHORT).show();
                         coches.clear();
@@ -170,7 +174,6 @@ public class MostrarCochesAdmin extends AppCompatActivity {
                 }
             }
         });
-
     }
     public void ocultarTeclado(){
         View view = this.getCurrentFocus();

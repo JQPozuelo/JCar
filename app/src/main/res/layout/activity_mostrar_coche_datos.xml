@@ -12,7 +12,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="317dp"
         android:layout_height="65dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="60dp"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.373"
@@ -129,13 +129,14 @@
 
     <Button
         android:id="@+id/bt_Eliminar"
-        android:layout_width="190dp"
+        android:layout_width="317dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:backgroundTint="@color/black"
         android:onClick="ElimnarCoche"
         android:text="@string/eliminar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.372"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_info"
         tools:ignore="TextContrastCheck" />
@@ -144,7 +145,7 @@
         android:id="@+id/txtCorreoMos"
         android:layout_width="190dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -173,21 +174,20 @@
 
     <Button
         android:id="@+id/btActualizarM"
-        android:layout_width="190dp"
+        android:layout_width="317dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
         android:backgroundTint="@color/black"
         android:onClick="ActualizarCoches"
         android:text="@string/actualizar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_info" />
+        app:layout_constraintEnd_toEndOf="@+id/bt_Eliminar"
+        app:layout_constraintStart_toStartOf="@+id/bt_Eliminar"
+        app:layout_constraintTop_toBottomOf="@+id/bt_Eliminar" />
 
     <TextView
         android:id="@+id/txtRecibo"
         android:layout_width="190dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -199,14 +199,13 @@
 
     <Button
         android:id="@+id/BtMenu"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
         android:onClick="VolverMenu"
-        android:text="Menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_info" />
+        android:text="@string/menu"
+        app:layout_constraintEnd_toEndOf="@+id/btActualizarM"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/btActualizarM"
+        app:layout_constraintTop_toBottomOf="@+id/btActualizarM" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

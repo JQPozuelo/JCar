@@ -33,7 +33,7 @@
     <Button
         android:id="@+id/btRestablecer"
         android:layout_width="340dp"
-        android:layout_height="61dp"
+        android:layout_height="70dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/black"
         android:onClick="RestablecerContra"

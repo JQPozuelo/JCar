@@ -89,10 +89,11 @@ public class MostrarCocheDatos extends AppCompatActivity {
         {
             txtCorreoMos.setText(user.getEmail());
         }
+        // Obtiene el objeto que se cargo en el viewHolder y lanza los atributos que tiene en los campos de texto
         Intent intent = getIntent();
         if (intent != null) {
             ce = (Coches) intent.getSerializableExtra(EXTRA_OBJETO_MATRICULA);
-            key = intent.getStringExtra(EXTRA_OBJETO_MARCA_KEY );
+            key = intent.getStringExtra(EXTRA_OBJETO_MARCA_KEY);
             edt_NombreMatricula.setText(ce.getMatricula());
             edt_NombreMarca.setText(ce.getMarca());
             edt_NombreModelo.setText(ce.getModelo());
@@ -114,9 +115,9 @@ public class MostrarCocheDatos extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 Intent intent = getIntent();
                 ce = (Coches) intent.getSerializableExtra(EXTRA_OBJETO_MATRICULA);
+                //Borra el objeto obtenido del viewHolder que es el que se le pasa para que este lo pueda borrar
                 db.collection("Usuarios").document(user.getEmail()).collection("Coches")
                         .document(ce.getMatricula()).delete();
-
                 Toast.makeText(MostrarCocheDatos.this, "Coche borrado correctamente", Toast.LENGTH_SHORT).show();
                 Intent intent1 = new Intent(MostrarCocheDatos.this, MostrarCoche.class);
                 startActivity(intent1);
@@ -161,6 +162,9 @@ public class MostrarCocheDatos extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 Coches c1 = new Coches(matrCoche, marcCoche, modeCoche, motCoche, estado, comenta, crre);
+                // Como en Firebase hay una opcion que la base de datos puede detectar siempre y cuando no se cambie la referencia que tiene en este caso no se puede
+                // Este metodo puede ser utilizado de igual manera que el crear que directamente le vuelves a pasar el objeto que quiere actualizar de nuevo
+                // Por eso se usa un set en vez de un update
                 db.collection("Usuarios").document(crre).collection("Coches")
                         .document(ce.getMatricula()).set(c1);
                 Toast.makeText(MostrarCocheDatos.this, "Coche actualizado correctamente", Toast.LENGTH_SHORT).show();

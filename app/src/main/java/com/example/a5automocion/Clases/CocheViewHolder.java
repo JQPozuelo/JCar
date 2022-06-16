@@ -42,11 +42,13 @@ public class CocheViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     @Override
     public void onClick(View view) {
+        // obitene la posicion de la lista y sus claves
         int mPosition = getAdapterPosition();
         List<Coches> coches = this.lcAdapter.getListaCoches();
         List<String> keys = this.lcAdapter.getKeys();
         Coches coches1 = coches.get(mPosition);
         String key = keys.get(mPosition);
+        //Lanza el objeto obtenido a otra pantalla con sus atributos
         Intent intent = new Intent(lcAdapter.getC(), MostrarCocheDatos.class);
         intent.putExtra(EXTRA_OBJETO_MATRICULA, coches1);
         intent.putExtra(EXTRA_OBJETO_MARCA_KEY, key);
