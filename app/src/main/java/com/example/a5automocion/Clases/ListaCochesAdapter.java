@@ -81,7 +81,7 @@ public class ListaCochesAdapter extends RecyclerView.Adapter<CocheViewHolder>{
                 holder.btMosD.setBackgroundColor(GREEN);
             }else if (coche_actual.getEstado().equals("Recepcionado")){
                 holder.btMosD.setBackgroundColor(Color.parseColor("#ffff8800"));
-            }else if (coche_actual.getEstado().equals("En reparacion")){
+            }else{
                 holder.btMosD.setBackgroundColor(RED);
             }
             //Aqui le indico que muestre la imagen en funcion de la marca recibida cuando recibe el objeto coche de la base de datos
