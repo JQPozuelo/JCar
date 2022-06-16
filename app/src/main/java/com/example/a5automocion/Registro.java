@@ -47,12 +47,13 @@ public class Registro extends AppCompatActivity {
         String contraN = String.valueOf(edt_Ncontra.getText());
         String contraCN = String.valueOf(edt_CNcontra.getText());
         boolean error = false;
+        //Obligo al usuario a seguir un patron predeterminado de android de una escritura correcta de email
         if(correo.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(correo).matches())
         {
             edt_Rcorreo.setError("Correo invalido");
             error = true;;
         }
-
+        //Le marco como pauta al usuario que la contraseña debe tener 6 caracteres y a su vez contener 1 numero
         if (contraN.isEmpty() || contraN.length() < 6)
         {
             edt_Ncontra.setError("La contraseña debe contener 6 caracteres");
@@ -61,6 +62,7 @@ public class Registro extends AppCompatActivity {
             edt_Ncontra.setError("La contraseña debe contener al menos 1 numero");
             error = true;
         }
+        // Para una buena confirmacion de la contraseña se le compara lo escrito en ambos campos de texto
         if (!contraCN.equals(contraN)){
             edt_CNcontra.setError("La contraseña no es la misma");
             error = true;
@@ -73,6 +75,8 @@ public class Registro extends AppCompatActivity {
         }
     }
     public void RegistroUsuario(String email, String password){
+        //Mediante la llamada a la auntenticacion de Firebase, este contiene los usuarios registrados en tu app este realiza comparando los registros que tiene
+        // la creacion del usuario y si existe ya no deja crearlo
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -98,7 +102,6 @@ public class Registro extends AppCompatActivity {
                 });
     }
     public void RegistrarN(View view) {
-
         validacion();
     }
 

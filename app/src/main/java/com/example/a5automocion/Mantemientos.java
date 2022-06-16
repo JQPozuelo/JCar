@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Mantemientos extends AppCompatActivity {
     private String title = "Libro de mantemiento";
@@ -50,6 +51,7 @@ public class Mantemientos extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser.getEmail().equals("admin@gmail.com"))
         {
+            // Si el usuario logueado es administrador mostrara los botones
             btActualizar.setVisibility(View.VISIBLE);
             btBorrar.setVisibility(View.VISIBLE);
             btNuevo.setVisibility(View.VISIBLE);
@@ -84,9 +86,14 @@ public class Mantemientos extends AppCompatActivity {
     public void BuscarManual(View view) {
         String matricula = String.valueOf(edt_Matricula.getText());
         boolean error = false;
+        //Validaciones de campos en blanco y se le marcan unos patrones de escritura para que se escriba de manera correcta las matriculas
         if (matricula.isEmpty())
         {
             edt_Matricula.setError("No puedes dejar la matricula en blanco");
+            error = true;
+        }else if(!Pattern.compile("[0-9]").matcher(matricula).find())
+        {
+            edt_Matricula.setError("La matricula debe contener letras, compruebe su matricula");
             error = true;
         }
         if (error)
@@ -98,6 +105,7 @@ public class Mantemientos extends AppCompatActivity {
         myRef.child("Vehiculos").child(matricula).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Si lee la base de datos de manera correcta, comprobara si existe para poder buscarlo
                 if (snapshot.exists())
                 {
                     String notas = snapshot.child("contenido").getValue().toString();
@@ -121,6 +129,10 @@ public class Mantemientos extends AppCompatActivity {
         {
             edt_Matricula.setError("No puedes dejar la matricula en blanco");
             error = true;
+        }else if(!Pattern.compile("[0-9]").matcher(matricula).find())
+        {
+            edt_Matricula.setError("La matricula debe contener letras, compruebe su matricula");
+            error = true;
         }
         if (apuntes.isEmpty())
         {
@@ -140,8 +152,10 @@ public class Mantemientos extends AppCompatActivity {
                         myRef.child("Vehiculos").child(matricula).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                //Este if comprobara si existe para poder añadirlo a la base de datos
                                 if (!snapshot.exists())
                                 {
+                                    //Si lee la referencia del objeto y ese no existe añadira de manera corecta, el objeto
                                     LibroMantenimiento lb = new LibroMantenimiento(matricula, apuntes);
                                     FirebaseDatabase database1 = FirebaseDatabase.getInstance();
                                     DatabaseReference myRef1 = database1.getReference();
@@ -176,6 +190,10 @@ public class Mantemientos extends AppCompatActivity {
         {
             edt_Matricula.setError("No puedes dejar la matricula en blanco");
             error = true;
+        }else if(!Pattern.compile("[0-9]").matcher(matricula).find())
+        {
+            edt_Matricula.setError("La matricula debe contener letras, compruebe su matricula");
+            error = true;
         }
         if (datos.isEmpty())
         {
@@ -185,21 +203,22 @@ public class Mantemientos extends AppCompatActivity {
         {
             return;
         }
-        String prueba = "";
         AlertDialog.Builder alerta1 = new AlertDialog.Builder(Mantemientos.this);
         alerta1.setTitle("¿Desea actualizar el manual?");
         alerta1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 LibroMantenimiento lbp = new LibroMantenimiento(matricula, datos);
+                // Realizo un mapeo del objeto para que este lo pueda identificar en la base de datos y asi poder actualizarlo
                 Map<String, Object> nuevoManual = new HashMap<String,Object>();
                 nuevoManual.put(clave,lbp);
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference();
+                //Le digo que actualice el child pasandole un nuevo objeto
                 myRef.child("Vehiculos").updateChildren(nuevoManual);
                 Toast.makeText(Mantemientos.this,"Actualizacion correcta",Toast.LENGTH_LONG).show();
                 edt_Matricula.setText("");
-                edt_Mantes.setText(prueba);
+                edt_Mantes.setText("");
             }
         });
         alerta1.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -215,6 +234,10 @@ public class Mantemientos extends AppCompatActivity {
         if (clave.isEmpty())
         {
             edt_Matricula.setError("No puedes dejar la matricula en blanco");
+            error = true;
+        }else if(!Pattern.compile("[0-9]").matcher(clave).find())
+        {
+            edt_Matricula.setError("La matricula debe contener letras, compruebe su matricula");
             error = true;
         }
         if (error)
@@ -233,6 +256,7 @@ public class Mantemientos extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists())
                         {
+                            //Le paso la matricula como clave para poder borrarlo correctamente
                             myRef.child("Vehiculos").child(clave).removeValue();
                             Toast.makeText(Mantemientos.this,"Borrado correcto", Toast.LENGTH_LONG).show();
                             edt_Matricula.setText("");
@@ -256,11 +280,14 @@ public class Mantemientos extends AppCompatActivity {
         alerta1.show();
     }
     public void ocultarTeclado(){
+        // Metodo para poder ocultar el teclado cuando le das a un boton, este metodo limpia el focus del teclado
         View view = this.getCurrentFocus();
         //view.clearFocus();
         if(view!= null)
         {
+            //Este metodo arbitra la interaccion de la entrada de datos en la aplicacion
             InputMethodManager imd = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            // Aqui le indico que el telcado se oculte cuando un boton es presionado
             imd.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }

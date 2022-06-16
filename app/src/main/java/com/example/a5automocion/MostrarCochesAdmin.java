@@ -32,7 +32,6 @@ import java.util.List;
 
 public class MostrarCochesAdmin extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE = "es.jorge.cocheusuario.objetomessage";
     private String title = "Vehiculos";
     private TextView txtEmailMA;
     private List<Coches> coches;
@@ -175,7 +174,7 @@ public class MostrarCochesAdmin extends AppCompatActivity {
     }
     public void ocultarTeclado(){
         View view = this.getCurrentFocus();
-        view.clearFocus();
+        //view.clearFocus();
         if(view!= null)
         {
             InputMethodManager imd = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

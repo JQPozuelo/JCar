@@ -1,6 +1,5 @@
 package com.example.a5automocion;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import com.example.a5automocion.Clases.Coches;
 import com.example.a5automocion.Clases.ListaCochesAdapter;
-import com.example.a5automocion.Clases.Usuario;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

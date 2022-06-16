@@ -2,7 +2,6 @@ package com.example.a5automocion;
 
 import static com.example.a5automocion.Clases.CocheViewHolder.EXTRA_OBJETO_MARCA_KEY;
 import static com.example.a5automocion.Clases.CocheViewHolder.EXTRA_OBJETO_MATRICULA;
-import static com.example.a5automocion.MostrarCochesAdmin.EXTRA_MESSAGE;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a5automocion.Clases.Coches;
-import com.example.a5automocion.Clases.Usuario;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -142,18 +140,15 @@ public class MostrarCocheDatos extends AppCompatActivity {
         String crre = String.valueOf(txtRecibo.getText());
         String estado = String.valueOf(edt_NombreEstado.getText());
         boolean error = false;
-        if(motCoche.isEmpty())
-        {
-            edt_NombreMotor.setError("Debes introducir un motor");
-            error = true;
-        }
         if (estado.isEmpty())
         {
             edt_NombreEstado.setError("No puedes dejar este campo en blanco");
+            error = true;
         }
         if (comenta.isEmpty())
         {
             edt_info.setError("No puedes dejar este campo en blanco");
+            error = true;
         }
         if(error)
         {
