@@ -38,3 +38,5 @@ En esta pantalla el usuario administrador tendrá la capacidad de poder crear en
 de este documento este usuario escribirá lo que se le puede realizar al vehículo proximamente por ejemplo a los 200.000 km cambio de liquido de la caja de cambios o 
 a los 3 años, este documento podrá ser actualizado y borrado por el administrador.
 El cliente en esta pantalla solo podrá buscar su matrícula y ver lo anotado por el mecánico de estas recomendaciones.
+## Instalación
+Se debe poseer un dispositivo movil o un emulador de movil que posea el sistema operativo Android. Si se poseen esos requisitos se debera ejecutar el archivo JCar.apk
