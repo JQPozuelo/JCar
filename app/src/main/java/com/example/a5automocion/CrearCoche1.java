@@ -83,17 +83,24 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
             try {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 List<String> marcas = new ArrayList<>();
+                // Le indico que el adaptador es un array y le paso el estilo que quiero que se vea cuando se vea lo escrito en el array y cuando este se despliegue
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(CrearCoche1.this, R.layout.estilospinner, marcas);
+                // le indico al spinner que adaptador debe lanzar cuando se inicie la pantalla
                 sp_marca.setAdapter(adapter);
                 db.collection("Coches").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        // Si la llamada es correcta, le indico que me recorra los documentos con un foreach
                         if(task.isSuccessful())
                         {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                // Obtengo los id de los documentos que estos los acumulo en una variable tipo string
+                                // Este documento en la forma que Firebase lo realizo toma esta llamada al documento y que obtenga el id+
+                                // A que recoja todos los id de los documentos como una lista solo teniendo que llamar a un unico documento a nivel de codigo
                                 String p = document.getId();
                                 marcas.add(p);
                             }
+                            // Le indico que mantenga actualizado el spinner
                             adapter.notifyDataSetChanged();
                         }
                     }
@@ -126,7 +133,7 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
             error = true;
         }else if(!Pattern.compile("[0-9]").matcher(motCoche).find())
         {
-            edt_Matricula.setError("El motor debe contener numeros");
+            edt_Motor.setError("El motor debe contener numeros");
             error = true;
         }
         if(error)
@@ -175,18 +182,22 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        // Le digo a la marca la posicion, que esta escogida
         marcaelegida = adapterView.getItemAtPosition(i).toString();
         if (marcaelegida != null) {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             List<String> modelos = new ArrayList<>();
             ArrayAdapter<String> adapter = new ArrayAdapter<>(CrearCoche1.this, R.layout.estilospinner, modelos);
             sp_modelo.setAdapter(adapter);
+            //Le paso la posicion de la marca
             myRef = db.collection("Coches").document(marcaelegida).get();
             myRef.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
+                        // Instancio los documentos y le indico que obtenga los resultados
                         DocumentSnapshot documentSnapshot = task.getResult();
+                        // Si el documento existe obten los 6 strings que seran 6 modelos y los añade a la lista
                         if (documentSnapshot.exists()) {
                             String p = documentSnapshot.getString("Modelo");
                             String p1 = documentSnapshot.getString("Modelo1");
@@ -208,6 +219,7 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
             sp_modelo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    // Aqui recoge la posicion del modelo escogido para poder guardarlo en la variable
                     modeloelegido = sp_modelo.getItemAtPosition(i).toString();
                 }
 

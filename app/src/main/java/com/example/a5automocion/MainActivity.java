@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         {
             return;
         }
-        // Con la autenticacion de Firebase lanzo el metodo de crear un usuario con email y contraseña
+        // Con la autenticacion de Firebase lanzo el metodo de loguear al usuario con email y contraseña, comprobando si esta en los usuarios registrado en la aplicacion
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
