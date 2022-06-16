@@ -2,6 +2,7 @@ package com.example.a5automocion;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -64,6 +65,7 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_crear_coche1);
         edt_Matricula = (TextInputEditText) findViewById(R.id.edt_Matricula);
         edt_Motor = (TextInputEditText) findViewById(R.id.edt_Motor);
