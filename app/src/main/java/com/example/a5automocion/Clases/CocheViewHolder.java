@@ -43,7 +43,6 @@ public class CocheViewHolder extends RecyclerView.ViewHolder implements View.OnC
     @Override
     public void onClick(View view) {
         int mPosition = getAdapterPosition();
-
         List<Coches> coches = this.lcAdapter.getListaCoches();
         List<String> keys = this.lcAdapter.getKeys();
         Coches coches1 = coches.get(mPosition);
