@@ -42,20 +42,17 @@ public class Mantemientos extends AppCompatActivity {
     private TextInputEditText edt_Matricula;
     private Button btActualizar;
     private Button btBorrar;
-    private Button btNuevo;
     @Override
     public void onStart() {
         super.onStart();
         btActualizar.setVisibility(View.INVISIBLE);
         btBorrar.setVisibility(View.INVISIBLE);
-        btNuevo.setVisibility(View.INVISIBLE);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser.getEmail().equals("admin@gmail.com"))
         {
             // Si el usuario logueado es administrador mostrara los botones
             btActualizar.setVisibility(View.VISIBLE);
             btBorrar.setVisibility(View.VISIBLE);
-            btNuevo.setVisibility(View.VISIBLE);
         }
         if(currentUser != null){
             currentUser.reload();
@@ -76,7 +73,6 @@ public class Mantemientos extends AppCompatActivity {
         edt_Matricula = (TextInputEditText) findViewById(R.id.edt_MatriculaBuscar);
         btActualizar = (Button) findViewById(R.id.btActualizar);
         btBorrar = (Button) findViewById(R.id.btBorrar);
-        btNuevo = (Button) findViewById(R.id.btGuardar);
         mAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
@@ -95,7 +91,7 @@ public class Mantemientos extends AppCompatActivity {
             error = true;
         }else if(!Pattern.compile("[0-9]").matcher(matricula).find())
         {
-            edt_Matricula.setError("La matricula debe contener letras, compruebe su matricula");
+            edt_Matricula.setError("La matricula debe contener numeros, compruebe su matricula");
             error = true;
         }
         if (error)
@@ -123,66 +119,6 @@ public class Mantemientos extends AppCompatActivity {
         });
         ocultarTeclado();
     }
-    public void GuardarManual(View view) {
-        String matricula = String.valueOf(edt_Matricula.getText());
-        String apuntes = String.valueOf(edt_Mantes.getText());
-        boolean error = false;
-        if (matricula.isEmpty())
-        {
-            edt_Matricula.setError("No puedes dejar la matricula en blanco");
-            error = true;
-        }else if(!Pattern.compile("[0-9]").matcher(matricula).find())
-        {
-            edt_Matricula.setError("La matricula debe contener letras, compruebe su matricula");
-            error = true;
-        }
-        if (apuntes.isEmpty())
-        {
-            edt_Mantes.setError("No se puede dejar la información en blanco");
-        }
-        if (error)
-        {
-            return;
-        }
-        AlertDialog.Builder alerta1 = new AlertDialog.Builder(Mantemientos.this);
-        alerta1.setTitle("¿Desea guardar el manual?");
-        alerta1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference();
-                        myRef.child("Vehiculos").child(matricula).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                //Este if comprobara si existe para poder añadirlo a la base de datos
-                                if (!snapshot.exists())
-                                {
-                                    //Si lee la referencia del objeto y ese no existe añadira de manera corecta, el objeto
-                                    LibroMantenimiento lb = new LibroMantenimiento(matricula, apuntes);
-                                    FirebaseDatabase database1 = FirebaseDatabase.getInstance();
-                                    DatabaseReference myRef1 = database1.getReference();
-                                    myRef1.child("Vehiculos").child(matricula).setValue(lb);
-                                    Toast.makeText(Mantemientos.this, "Manual añadido correctamente", Toast.LENGTH_SHORT).show();
-                                    edt_Matricula.setText("");
-                                    edt_Mantes.setText("");
-                                }else {
-                                    Toast.makeText(Mantemientos.this, "Ya existe esta entrada en nuestra base de datos", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-                            }
-                        });
-                    }
-        });
-        alerta1.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        alerta1.show();
-    }
     public void ActualizarManual(View view) {
         String clave = String.valueOf(edt_Matricula.getText());
         String matricula = String.valueOf(edt_Matricula.getText());
@@ -194,7 +130,7 @@ public class Mantemientos extends AppCompatActivity {
             error = true;
         }else if(!Pattern.compile("[0-9]").matcher(matricula).find())
         {
-            edt_Matricula.setError("La matricula debe contener letras, compruebe su matricula");
+            edt_Matricula.setError("La matricula debe contener numeros, compruebe su matricula");
             error = true;
         }
         if (datos.isEmpty())
@@ -239,7 +175,7 @@ public class Mantemientos extends AppCompatActivity {
             error = true;
         }else if(!Pattern.compile("[0-9]").matcher(clave).find())
         {
-            edt_Matricula.setError("La matricula debe contener letras, compruebe su matricula");
+            edt_Matricula.setError("La matricula debe contener numeros, compruebe su matricula");
             error = true;
         }
         if (error)

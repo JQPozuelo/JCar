@@ -17,12 +17,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.a5automocion.Clases.Coches;
+import com.example.a5automocion.Clases.LibroMantenimiento;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -38,8 +41,6 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
     private String title = "Crear";
     private TextView txtCorreoA;
     private TextInputEditText edt_Matricula;
-    private TextInputEditText edt_Marca;
-    private TextInputEditText edt_Modelo;
     private TextInputEditText edt_Motor;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -87,7 +88,7 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
                 List<String> marcas = new ArrayList<>();
                 // Le indico que el adaptador es un array y le paso el estilo que quiero que se vea cuando se vea lo escrito en el array y cuando este se despliegue
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(CrearCoche1.this, R.layout.estilospinner, marcas);
-                // le indico al spinner que adaptador debe lanzar cuando se inicie la pantalla
+                // Le indico al spinner que adaptador debe lanzar cuando se inicie la pantalla
                 sp_marca.setAdapter(adapter);
                 db.collection("Coches").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -119,6 +120,7 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
         String motCoche = String.valueOf(edt_Motor.getText());
         String crre = String.valueOf(txtCorreoA.getText());
         String estado = "Disponible";
+        String info = "";
         boolean error = false;
         if(matrCoche.isEmpty())
         {
@@ -165,6 +167,10 @@ public class CrearCoche1 extends AppCompatActivity implements AdapterView.OnItem
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                                 db.collection("Usuarios").document(user.getEmail()).collection("Coches")
                                         .document(c1.getMatricula()).set(c1);
+                                LibroMantenimiento lb = new LibroMantenimiento(matrCoche, info);
+                                FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+                                DatabaseReference myRef1 = database1.getReference();
+                                myRef1.child("Vehiculos").child(matrCoche).setValue(lb);
                                 Toast.makeText(CrearCoche1.this, "Coche añadido correctamente", Toast.LENGTH_SHORT).show();
                                 finish();
                             }

@@ -12,7 +12,7 @@
         android:layout_width="274dp"
         android:layout_height="290dp"
         android:layout_marginTop="176dp"
-        android:contentDescription="logoEmpresa"
+        android:contentDescription="@string/logoempresa"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
