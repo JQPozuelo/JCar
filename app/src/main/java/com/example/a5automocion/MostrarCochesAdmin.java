@@ -177,6 +177,14 @@ public class MostrarCochesAdmin extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this, Menu1.class);
+        startActivity(intent);
+    }
+
     public void ocultarTeclado(){
         View view = this.getCurrentFocus();
         //view.clearFocus();

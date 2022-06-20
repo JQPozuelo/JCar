@@ -41,18 +41,15 @@ public class Mantemientos extends AppCompatActivity {
     private FirebaseUser user;
     private TextInputEditText edt_Matricula;
     private Button btActualizar;
-    private Button btBorrar;
     @Override
     public void onStart() {
         super.onStart();
         btActualizar.setVisibility(View.INVISIBLE);
-        btBorrar.setVisibility(View.INVISIBLE);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser.getEmail().equals("admin@gmail.com"))
         {
             // Si el usuario logueado es administrador mostrara los botones
             btActualizar.setVisibility(View.VISIBLE);
-            btBorrar.setVisibility(View.VISIBLE);
         }
         if(currentUser != null){
             currentUser.reload();
@@ -66,13 +63,12 @@ public class Mantemientos extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_mantemientos);
         edt_Mantes = (EditText) findViewById(R.id.edt_Manes);
         txtLog = (TextView) findViewById(R.id.txtLog);
         edt_Matricula = (TextInputEditText) findViewById(R.id.edt_MatriculaBuscar);
         btActualizar = (Button) findViewById(R.id.btActualizar);
-        btBorrar = (Button) findViewById(R.id.btBorrar);
         mAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
@@ -166,57 +162,7 @@ public class Mantemientos extends AppCompatActivity {
         });
         alerta1.show();
     }
-    public void BorrarManual(View view) {
-        String clave = String.valueOf(edt_Matricula.getText());
-        boolean error = false;
-        if (clave.isEmpty())
-        {
-            edt_Matricula.setError("No puedes dejar la matricula en blanco");
-            error = true;
-        }else if(!Pattern.compile("[0-9]").matcher(clave).find())
-        {
-            edt_Matricula.setError("La matricula debe contener numeros, compruebe su matricula");
-            error = true;
-        }
-        if (error)
-        {
-            return;
-        }
-        AlertDialog.Builder alerta1 = new AlertDialog.Builder(Mantemientos.this);
-        alerta1.setTitle("¿Desea borrar el manual?");
-        alerta1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference();
-                myRef.child("Vehiculos").child(clave).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists())
-                        {
-                            //Le paso la matricula como clave para poder borrarlo correctamente
-                            myRef.child("Vehiculos").child(clave).removeValue();
-                            Toast.makeText(Mantemientos.this,"Borrado correcto", Toast.LENGTH_LONG).show();
-                            edt_Matricula.setText("");
-                            edt_Mantes.setText("");
-                        }else {
-                            Toast.makeText(Mantemientos.this,"Esa matricula no se puede borrar no existe en nuestra base de datos", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
-            }
-        });
-        alerta1.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        alerta1.show();
-    }
     public void ocultarTeclado(){
         // Metodo para poder ocultar el teclado cuando le das a un boton, este metodo limpia el focus del teclado
         View view = this.getCurrentFocus();

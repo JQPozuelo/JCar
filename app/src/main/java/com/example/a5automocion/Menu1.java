@@ -43,7 +43,7 @@ public class Menu1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_menu1);
         txtAuten = (TextView) findViewById(R.id.txtAuten);
         btCrearV = (Button) findViewById(R.id.bt_CrearC);

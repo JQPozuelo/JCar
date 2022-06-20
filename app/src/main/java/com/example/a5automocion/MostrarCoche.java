@@ -42,7 +42,7 @@ public class MostrarCoche extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_mostrar_coche);
         rv_Mostrar = findViewById(R.id.rv_Mostrar);
         mAuth = FirebaseAuth.getInstance();
@@ -148,5 +148,11 @@ public class MostrarCoche extends AppCompatActivity {
                 cocheStatus.cocheIsLoaded(coches,keys);
             }
         });
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this, Menu1.class);
+        startActivity(intent);
     }
 }

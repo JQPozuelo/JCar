@@ -78,24 +78,12 @@
         android:id="@+id/btActualizar"
         android:layout_width="300dp"
         android:layout_height="65dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/black"
         android:onClick="ActualizarManual"
         android:text="@string/actualizar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btBorrar" />
-
-    <Button
-        android:id="@+id/btBorrar"
-        android:layout_width="300dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@color/black"
-        android:onClick="BorrarManual"
-        android:text="@string/eliminar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_Manes" />
 

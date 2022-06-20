@@ -20,6 +20,8 @@ import com.example.a5automocion.Clases.Coches;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MostrarCocheDatos extends AppCompatActivity {
@@ -73,7 +75,7 @@ public class MostrarCocheDatos extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_mostrar_coche_datos);
         edt_NombreMatricula = (TextInputEditText) findViewById(R.id.edt_NombreMatricula);
         edt_NombreMarca = (TextInputEditText) findViewById(R.id.edt_NombreMarca);
@@ -115,11 +117,15 @@ public class MostrarCocheDatos extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference();
                 Intent intent = getIntent();
                 ce = (Coches) intent.getSerializableExtra(EXTRA_OBJETO_MATRICULA);
                 //Borra el objeto obtenido del viewHolder que es el que se le pasa para que este lo pueda borrar
                 db.collection("Usuarios").document(user.getEmail()).collection("Coches")
                         .document(ce.getMatricula()).delete();
+                //Le paso la matricula como clave para poder borrarlo correctamente
+                myRef.child("Vehiculos").child(ce.getMatricula()).removeValue();
                 Toast.makeText(MostrarCocheDatos.this, "Coche borrado correctamente", Toast.LENGTH_SHORT).show();
                 Intent intent1 = new Intent(MostrarCocheDatos.this, MostrarCoche.class);
                 startActivity(intent1);
